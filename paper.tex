@@ -1,0 +1,92 @@
+\documentclass{article}
+\title{The Epistemic Modal \emph{probable}: Qualitative and Quantitative Accounts}
+\author{Conrad Friedrich \\ MCMP, LMU Munich \\ 1,337 words}
+\date{\today} 
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{enumitem}
+\usepackage{setspace}
+% Used to scale \medcap
+\usepackage{graphicx}
+\usepackage[backend=biber,authordate,
+ibidtracker=context,natbib,doi=false,isbn=false,url=false]{biblatex-chicago}
+
+\addbibresource{/home/gilbert/Documents/bibliography/references.bib}
+
+\newcommand*{\medcap}{\mathbin{\scalebox{1.5}{\ensuremath{\cap}}}}%
+\renewcommand{\L}{\mathcal{L}}
+\begin{document}
+
+\onehalfspacing
+\maketitle
+
+\section{Introduction}
+\section{Intensional Semantics}
+Note that we don't need first order logic. 
+Abstracted away from syntax, just look at the semantics.
+\section{The Epistemic Modal \emph{probable}}
+How is probable to be evaluated? MacFarlane's Solipcism. 
+
+To base the following discussions on a common language, we follow the definitions of a propositional language $\L$ by \textcite{harrison-trainor17_prefer} and \textcite{holliday13_measur}:
+\[
+\varphi ::= p ~|~ \neg \varphi ~|~ (\varphi \land \psi) ~|~ (\varphi \rightarrow \psi) ~|~ (\varphi \vee \psi) ~|~ (\varphi \succeq \psi) ~|~ \triangle\varphi 
+\]
+The intended readings for the Boolean operators are completely standard.
+$\varphi \succeq \psi$ is to be read as `$\varphi$ is at least as likely as $\psi$', and $\triangle \varphi$ is to be read as `probably $\varphi$'.
+
+We might leave uninterpreted some elements which don't figure prominently in the respective theory discussed at that moment.
+
+\section{Kratzer's Analysis}
+
+For \textcite{kratzer91_modal} epistemic modals like \emph{probably} are just a special case of a more general class of modal auxiliaries.
+These can be epistemic (e.g. `Jockl must have been the murderer [in view of the available evidence]'), deontic (e.g. `Jockl must go to jail [in view of what the law provides]'), or circumstancial (e.g. `Jockl can lift the rock [given the weight of the rock and the conditions of Jockl's muscles, etc.]').
+Further, there are teleological (in view of certain aims), bouletic (in view of certain wishes), and doxastic (in view of certain beliefs) modalities.
+This list is by no means complete.
+
+Kratzer postulates that modality is always relative to a certain kind of interpreting the modalities involved, following Peirce (cite).
+She set out to formulate these different modalities in a common framework such that we'd only need to specify some parameters of the framework to determine the relevant modalities and give truth conditions for sentences involving modalities, while focussing on epistemic modals.
+
+Kratzer is unhappy with what she calls the \emph{standard analysis} as is gives the wrong verdict in two salient scenarios.
+--maybe also go through kratzer's examples which further motivate her decisions--maybe explain why we don't have an even easier definition.
+
+Importantly, the account for modality needs to include graded modalities, of the following sort:
+\begin{enumerate}[nosep,label=\alph*)]
+  \item Michl must be the murderer.
+  \item Michl is probably the murderer.
+  \item There is a good possibility that Michl is the murderer.
+  \item Michl might be the murderer.
+\end{enumerate}
+Here, the modalities are listed in decreasing strength, such that the intended reading is that a) implies b), b) implies c), and so forth. Note that is a qualitative approach to graded modals, as opposed to quantitative approaches, employing a scale structure in the semantics. 
+
+How does the semantics look like? For the basics: we assume a set $W$ of possible worlds, a set of propositions $P$ such that elements of $P$ are subsets of $W$, and that a proposition $p$ is true at $w$ iff $w \in p$. The crucial element in Kratzer's semantics is the \emph{conversational background}. It has two components.
+
+The \emph{modal base} determines for every world the set of worlds which are epistemically accessible from it.
+More formally, the modal base is a function $f: W \rightarrow \mathcal{P}(P)$\footnote{For finite $W$.} assigning each world $w$ a set of propositions.
+The set of propositions $f(w)$ assigned to $w$ represents, in the epistemic case, what we know at $w$.
+The set of epistemically accessible worlds then is $\bigcap f(w)$.
+
+The \emph{ordering source} is a function $g: W \rightarrow \mathcal{P}(P)$ s.t. each $w$ is assigned a set of propositions $g(w)$ which interpreted as an \emph{ideal} (cf. \cite{lewis81_order_seman_premis_seman_count}). The ordering source induces an order $\leq_{g(w)}$ as follows for all $w,w' \in W$: 
+\[
+w \leq_A w' :\iff \{p: p\in A ~\&~ w' \in p\} \subseteq \{p: p\in A ~\&~ w \in p\}
+\]
+The intended reading is that $w$ is at least as close to the ideal represented by $A$ as $w'$ iff all the ideal propositions in $A$ which are true in $w'$ are also true in $w$. 
+
+From this, Kratzer defines a the semantics for a list of different expressions, like `good possibility', `possibility' and so on. For our purposes, it suffices to look at those definitions involved in defining the model `probable'.
+\begin{align*}
+ \llbracket \varphi \succeq \psi \rrbracket^{f,g,w} &= \forall u \in (\medcap f(w) \cap q) \exists v \in \medcapf(w): v \leq_{g(w)}u ~\&~ v \in \llbracket \varphi \rrbracket 
+\end{align*}
+
+
+
+\section{Yalcin and Lassiter's Probability Semantics}
+Introduce the adequacy conditions V1-VXX etc.
+\section{Holliday and Icard's Generalisation to Measure Semantics}
+\section{Holliday and Icard's Unification of Preferential and Probabilistic Semantics}
+\section{Conclusion}
+What about the $\epsilon$-semantics (Adams, Pearl)? 
+\nocite{hamblin59_modal_probab,holliday13_measur,harrison-trainor17_prefer,kratzer91_modal,lassiter10_gradab,yalcin10_probab_operat,kratzer98_seman}
+ \printbibliography
+\end{document}
