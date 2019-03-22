@@ -6,11 +6,15 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{amsthm}
 \usepackage{stmaryrd}
 \usepackage{enumitem}
 \usepackage{setspace}
 % Used to scale \medcap
 \usepackage{graphicx}
+\usepackage{ebproof/ebproof}
+\usepackage{multicol}
+
 \usepackage[backend=biber,authordate,
 ibidtracker=context,natbib,doi=false,isbn=false,url=false]{biblatex-chicago}
 
@@ -18,16 +22,22 @@ ibidtracker=context,natbib,doi=false,isbn=false,url=false]{biblatex-chicago}
 
 \newcommand*{\medcap}{\mathbin{\scalebox{1.5}{\ensuremath{\cap}}}}%
 \renewcommand{\L}{\mathcal{L}}
+\newcommand{\lb}{\llbracket}
+\newcommand{\rb}{\rrbracket}
 \begin{document}
 
 \onehalfspacing
 \maketitle
 
 \section{Introduction}
+
+
 \section{Intensional Semantics}
 Note that we don't need first order logic. 
 Abstracted away from syntax, just look at the semantics.
+NEAT summary in Ivano's script, Class 9, page 3/4
 \section{The Epistemic Modal \emph{probable}}
+Also show the need for expanding the standard intensional semantics!
 How is probable to be evaluated? MacFarlane's Solipcism. 
 
 To base the following discussions on a common language, we follow the definitions of a propositional language $\L$ by \textcite{harrison-trainor17_prefer} and \textcite{holliday13_measur}:
@@ -35,8 +45,10 @@ To base the following discussions on a common language, we follow the definition
 \varphi ::= p ~|~ \neg \varphi ~|~ (\varphi \land \psi) ~|~ (\varphi \rightarrow \psi) ~|~ (\varphi \vee \psi) ~|~ (\varphi \succeq \psi) ~|~ \triangle\varphi 
 \]
 The intended readings for the Boolean operators are completely standard.
-$\varphi \succeq \psi$ is to be read as `$\varphi$ is at least as likely as $\psi$', and $\triangle \varphi$ is to be read as `probably $\varphi$'.
-
+\begin{align*}
+  \varphi \succeq \psi &: \varphi \text{ is at least as likely as } \psi \\
+  \triangle \varphi &:\text{probably } \varphi.
+\end{align*}
 We might leave uninterpreted some elements which don't figure prominently in the respective theory discussed at that moment.
 
 \section{Kratzer's Analysis}
@@ -59,30 +71,143 @@ Importantly, the account for modality needs to include graded modalities, of the
   \item There is a good possibility that Michl is the murderer.
   \item Michl might be the murderer.
 \end{enumerate}
-Here, the modalities are listed in decreasing strength, such that the intended reading is that a) implies b), b) implies c), and so forth. Note that is a qualitative approach to graded modals, as opposed to quantitative approaches, employing a scale structure in the semantics. 
+Here, the modalities are listed in decreasing strength, such that the intended reading is that a) implies b), b) implies c), and so forth. Note that is a qualitative approach to graded modals, as opposed to quantitative approaches, employing a scale structure in the semantics.
+\textcite{yalcin10_probab_operat} calls it a `relative likelihood' approach.
 
-How does the semantics look like? For the basics: we assume a set $W$ of possible worlds, a set of propositions $P$ such that elements of $P$ are subsets of $W$, and that a proposition $p$ is true at $w$ iff $w \in p$. The crucial element in Kratzer's semantics is the \emph{conversational background}. It has two components.
+\subsection{Kratzer's Formal Setup}
+How do the semantics look like?
+we assume a set $W$ of possible worlds, a set of propositions $P$ such that elements of $P$ are subsets of $W$, and assume that a proposition $p$ is true at $w$ iff $w \in p$.
+The crucial element in Kratzer's semantics that distinguishes her account from most simple semantics via Kripke frames with an accessibility relation is the \emph{conversational background}.
+It has two components.
 
 The \emph{modal base} determines for every world the set of worlds which are epistemically accessible from it.
-More formally, the modal base is a function $f: W \rightarrow \mathcal{P}(P)$\footnote{For finite $W$.} assigning each world $w$ a set of propositions.
+More formally, the modal base is a function $f: W \rightarrow \wp(P)$ assigning each world $w$ a set of propositions.
 The set of propositions $f(w)$ assigned to $w$ represents, in the epistemic case, what we know at $w$.
 The set of epistemically accessible worlds then is $\bigcap f(w)$.
 
-The \emph{ordering source} is a function $g: W \rightarrow \mathcal{P}(P)$ s.t. each $w$ is assigned a set of propositions $g(w)$ which interpreted as an \emph{ideal} (cf. \cite{lewis81_order_seman_premis_seman_count}). The ordering source induces an order $\leq_{g(w)}$ as follows for all $w,w' \in W$: 
+The \emph{ordering source} is a function $g: W \rightarrow \wp(P)$ s.t. each $w$ is assigned a set of propositions $g(w)$ which interpreted as an \emph{ideal} (cf. \cite{lewis81_order_seman_premis_seman_count}). The ordering source induces a partial order (reflexive, antisymmetric and transitive) $\leq_{g(w)}$ as follows for all $w,w' \in W$: 
 \[
-w \leq_A w' :\iff \{p: p\in A ~\&~ w' \in p\} \subseteq \{p: p\in A ~\&~ w \in p\}
+w \leq_{g(w)} w' :\iff \{p: p\in g(w) ~\&~ w' \in p\} \subseteq \{p: p\in  g(w) ~\&~ w \in p\}
 \]
-The intended reading is that $w$ is at least as close to the ideal represented by $A$ as $w'$ iff all the ideal propositions in $A$ which are true in $w'$ are also true in $w$. 
+The intended reading is that $w$ is at least as close to the ideal represented by $A$ as $w'$ iff all the ideal propositions in $A$ which are true in $w'$ are also true in $w$.
+From this, Kratzer defines a the semantics for a list of different expressions, like `good possibility', `possibility' and so on.
+For our purposes, it suffices to look at those definitions involved in defining the meaning of \emph{probably $\alpha$}.
 
-From this, Kratzer defines a the semantics for a list of different expressions, like `good possibility', `possibility' and so on. For our purposes, it suffices to look at those definitions involved in defining the model `probable'.
-\begin{align*}
- \llbracket \varphi \succeq \psi \rrbracket^{f,g,w} &= \forall u \in (\medcap f(w) \cap q) \exists v \in \medcapf(w): v \leq_{g(w)}u ~\&~ v \in \llbracket \varphi \rrbracket 
-\end{align*}
+First, define `as least as good a possibility as'.
+The induced order on worlds $\leq_{g(w)}$ is `lifted' to an order on the level of propositions.
+For a modal base $f$ and a ordering source $g$, for propositions $p,q$ and world $w$, we can define
+\[
+    p \succeq_w q :\iff \forall b \in B_w \exists a \in A_w: a \succeq_{g(w)} b,
+\]
+where $A_w = \bigcap f(w) \cap A$, and $B_w$ analogously (cf. \cite[][p.~519]{holliday13_measur}).
+In words, a proposition $p$ is as least as good a possibility as a proposition $q$ seen from a world $w$ iff for any world in $q$ epistemically accessible from $w$ there is a world in $p$ accessible from $w$ that is at least as close to the ideal picked out $g(w)$.
 
+Next, `a better possibility': $p \succ_w q :\iff p \succeq_w q ~\&~ q \not\succeq_w p$.  
+Finally, we can assign a meaning to \emph{probably $\alpha$} given a set of worlds $W$, a modal base $f$ and a ordering source $g$ \parencite[][p.~645]{kratzer91_modal}:
+\[
+\llbracket \text{probably } \alpha \rrbracket^{f,g,w} = 1 :\iff \lb \alpha \rb \succ_w \lb \neg\alpha \rb
+\]
+Assuming here that we are looking at a flat fragment and $\alpha$ doesn't contain modals itself.
+Intuitively,... [briefly explain]
+\subsection{Discussion}
 
+The account presented has a couple of advantages.
+
+- Neatly fits with the other modals, just change f and g
+
+- Gives an account of probable without resorting to probability measures (give argument by Hamblin - maybe more in philosophy texts? check titelbaum)
+
+- solves problems describes in Kratzer text (probably dont reiterate)  
+
+- more
+
+But it also suffers from crippling counterexamples, as will be explained in the next section.
 
 \section{Yalcin and Lassiter's Probability Semantics}
 Introduce the adequacy conditions V1-VXX etc.
+
+In his \parencite*{yalcin10_probab_operat}, Yalcin critically evaluates Kratzer's relative likelihood account and also Hamblin's account, which is based on the notion of possiblity (resp. plausiblity) measures \parencite{hamblin59_modal_probab}.
+Yalcin does this by following the good philosophical practice of establishing a set of desiderata the accounts can be evaluated against. In the case for judging semantics for a natural language phenomenon, these naturally come in the form of inference patterns that strike one as intuitively valid or invalid.
+The practice is fruitful because it gives criteria to compare different accounts in a transparent and comprehensible fashion, and shifts the focus of the problematic notion of \emph{intuitive plausibility} from judging the accounts themselves to judging the plausibility of the inference patterns.
+Whether some formally specified semantics validates a given inference pattern is then simply not a matter of debate and can be shown mathematically given the assumptions one is forced to make explicit.   
+\begin{center}
+    \begin{prooftree}
+        \hypo{ \triangle \varphi } \infer1[(V1)]{ \neg \triangle \neg \varphi}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+        \hypo{ \triangle (\varphi \land \psi)} \infer1[(V2)]{ \triangle \varphi \land \triangle \psi}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+        \hypo{ \triangle \varphi} \infer1[(V3)]{ \triangle (\varphi \lor \triangle \psi}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+    \hypo{ } \infer1[(V4)]{ \varphi \succeq \bot}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+    \hypo{ } \infer1[(V5)]{ \top \succeq \varphi}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+    \hypo{ \Box \varphi } \infer1[(V6)]{ \triangle \varphi}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+    \hypo{ \triangle \varphi } \infer1[(V7)]{ \Diamond \varphi}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+    \hypo{ \psi \succeq \varphi } \hypo{\triangle \varphi} \infer2[(V11)]{ \triangle \psi}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+    \hypo{ \psi \succeq \varphi } \hypo{\triangle \varphi} \infer2[(V8)]{ \triangle \psi}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+    \hypo{ \psi \succeq \varphi } \hypo{\varphi \succeq \neg\varphi}\infer2[(V12)]{ \psi \succeq \neg\psi}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+    \hypo{ \varphi \succeq \psi } \hypo{\varphi \succeq \chi}\infer2[(I1)]{ \varphi \succeq (\psi \lor \chd)}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+    \hypo{ \varphi \succeq \neg \varphi } \infer1[(I2)]{ \varphi \succeq \psi}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+    \hypo{ \triangle \varphi } \infer1[(I3)]{ \varphi \succeq \psi}
+    \end{prooftree}
+\end{center}
+ 
 \section{Holliday and Icard's Generalisation to Measure Semantics}
 \section{Holliday and Icard's Unification of Preferential and Probabilistic Semantics}
 \section{Conclusion}
