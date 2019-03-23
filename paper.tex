@@ -31,12 +31,16 @@ ibidtracker=context,natbib,doi=false,isbn=false,url=false]{biblatex-chicago}
 \renewcommand{\F}{\pazocal{F}}
 \newcommand{\lb}{\llbracket}
 \newcommand{\rb}{\rrbracket}
+\newcommand{\Po}{\text{Po}}
 
+\newcommand{\succeqK}{\succeq^K_{M,w}}
 \begin{document}
 
 \onehalfspacing
+
 \maketitle
 
+\tableofcontents
 \section{Introduction}
 
 
@@ -46,21 +50,28 @@ Note that we don't need first order logic.
 Abstracted away from syntax, just look at the semantics.
 NEAT summary in Ivano's script, Class 9, page 3/4
 \section{The Epistemic Modal \emph{probable}}
+Give some natural language motivation
+
 Also show the need for expanding the standard intensional semantics!
+
 How is probable to be evaluated? MacFarlane's Solipcism. 
 
-To base the following discussions on a common language, we follow the definitions of a propositional language $\L$ by \textcite{harrison-trainor17_prefer} and \textcite{holliday13_measur}:
+To base the following discussions on a common language, we define a
+propositional language $\L$ like \textcite{harrison-trainor17_prefer} and
+\textcite{holliday13_measur} do:
 \[
-\varphi ::= p ~|~ \neg \varphi ~|~ (\varphi \land \psi) ~|~ (\varphi \rightarrow \psi) ~|~ (\varphi \vee \psi) ~|~ (\varphi \succeq \psi) ~|~ \triangle\varphi 
+\varphi ::= p ~|~ \neg \varphi ~|~ (\varphi \land \psi) ~|~  (\varphi \succeq \psi) ~|~ \triangle\varphi 
 \]
-The intended readings for the Boolean operators are completely standard.
+The other boolean connectives $(\varphi \rightarrow \psi), (\varphi \vee
+\psi)$ are defined in the standard way from negation and conjunction. The
+intended readings for the Boolean operators are also standard, we add the following:
 \begin{align*}
   \varphi \succeq \psi &: \varphi \text{ is at least as likely as } \psi \\
   \triangle \varphi &:\text{probably } \varphi.
 \end{align*}
 We might leave uninterpreted some elements which don't figure prominently in the respective theory discussed at that moment.
 
-\section{Kratzer's Analysis}
+\section{Kratzer's Preferential Semantics}
 
 For \textcite{kratzer91_modal} epistemic modals like \emph{probably} are just a special case of a more general class of modal auxiliaries.
 These can be epistemic (e.g. `Jockl must have been the murderer [in view of the available evidence]'), deontic (e.g. `Jockl must go to jail [in view of what the law provides]'), or circumstancial (e.g. `Jockl can lift the rock [given the weight of the rock and the conditions of Jockl's muscles, etc.]').
@@ -80,10 +91,10 @@ Importantly, the account for modality needs to include graded modalities, of the
   \item There is a good possibility that Michl is the murderer.
   \item Michl might be the murderer.
 \end{enumerate}
-Here, the modalities are listed in decreasing strength, such that the intended reading is that a) implies b), b) implies c), and so forth. Note that is a qualitative approach to graded modals, as opposed to quantitative approaches, employing a scale structure in the semantics.
-\textcite{yalcin10_probab_operat} calls it a `relative likelihood' approach.
+Here, the modalities are listed in decreasing strength, such that the intended
+reading is that a) implies b), b) implies c), and so forth.
+Note that is a qualitative approach to graded modals, as opposed to quantitative approaches, employing a scale structure in the semantics.
 
-\subsection{Kratzer's Formal Setup}
 How do the semantics look like?
 we assume a set $W$ of possible worlds, a set of propositions $P$ such that elements of $P$ are subsets of $W$, and assume that a proposition $p$ is true at $w$ iff $w \in p$.
 The crucial element in Kratzer's semantics that distinguishes her account from most simple semantics via Kripke frames with an accessibility relation is the \emph{conversational background}.
@@ -120,8 +131,11 @@ Finally, we can assign a meaning to \emph{probably $\alpha$} given a set of worl
 Assuming here that we are looking at a flat fragment and $\alpha$ doesn't contain modals itself.
 Intuitively,... [briefly explain]
 
+\subsection{Formal Setup}
+
+To put it slightly more formally, we define: 
 \begin{definition}
-    A \emph{Kratzer-style preferential model} is a tuple $M = \langle W,f,g,V \rangle$ s.t.
+    A \emph{Kratzer preferential model} is a tuple $M = \langle W,f,g,V \rangle$ s.t.
     \begin{itemize}[nosep]
 \renewcommand\labelitemi{--}
       \item $W$ is a non-empty set of possible worlds,
@@ -130,23 +144,30 @@ Intuitively,... [briefly explain]
     \end{itemize}
 \end{definition}
 
-Further, we want the induced order defined above also hold for $M$. This is done in the following uninteresting definition: Let $f$ be a modal base, $g$ be a ordering source, $W$ a set of worlds. For each $w \in W$ let $\succeq_w$ be the order on subsets of $W$ defined in Equation \ref{eq:lifted}. Let $M = \langle W,f,g,V \rangle$ be a Kratzer-style preferential model. For $p,q \subseteq W$ we define an induced order on $\wp(W)$:   
+Further, we want the induced order defined above also hold for $M$.
+This is done in the following uninteresting definition:
+Let $f$ be a modal base, $g$ be a ordering source, $W$ a set of worlds.
+For each $w \in W$ let $\succeq_w$ be the order on subsets of $W$ defined in
+Equation \ref{eq:lifted}.
+Let $M = \langle W,f,g,V \rangle$ be a Kratzer preferential model.
+For $p,q \subseteq W$ we define an induced order on $\wp(W)$:   
 \begin{equation}
     \label{eq:induced}
        p \succeq^{M,w} q \text{ iff } p \succeq_w q.
 \end{equation}
     
-\begin{definition}[Kratzer-style semantics]
+\begin{definition}[Kratzer preferential semantics]
     \label{def:kratsem}
-    Let $M = \langle M,f,g,V \rangle$ be a Kratzer-style preferential model, $w \in W$, $\varphi, \psi \in \L$ and let $\succeq^{M,w}$ be the induced order on $\wp(W)$ by Equation \ref{eq:induced}. We define 
+    Let $M = \langle M,f,g,V \rangle$ be a Kratzer preferential model, $w \in W$, $\varphi, \psi \in \L$ and let $\succeq^{M,w}$ be the induced order on $\wp(W)$ by Equation \ref{eq:induced}. We define 
     
     \begin{enumerate}[nosep]
         \renewcommand\labelitemi{--}
       \item If $p \in \text{Atom}$, $M,w \models p$ iff $w \in V(p)$,
+      \item $M,w \models \neg \varphi$ iff $M,w \not\models \varphi$
       \item $M,w \models (\varphi \land \psi)$ iff $M,w \models \varphi$ and $M,w \models \psi$,
-      \item $\lb \varphi \rb = \{w' \in W : M,w' \models \varphi\}$,
+      \item $\lb \varphi \rb^M = \{w' \in W : M,w' \models \varphi\}$,
       \item $M,w \models \varphi \succeq \psi$ iff $\lb \varphi \rb^M \succeq^{M,w} \lb \psi \rb^M$,
-      \item $M,w \models \triangle \varphi$ iff $M,w \models \varphi \succeq^{M,w} \neg \varphi$,
+      \item $M,w \models \triangle \varphi$ iff $M,w \models \varphi \succeq \neg \varphi$,
       \item $M,w \models \Diamond \varphi$ iff ...
     \end{itemize}
 \end{definition}
@@ -163,10 +184,50 @@ The account presented has a couple of advantages.
 
 - more
 
-But it also suffers from crippling counterexamples, as will be explained in the next section.
+But it also suffers from crippling counterexamples: 
 
-\section{Yalcin and Lassiter's Probability Semantics}
-Introduce the adequacy conditions V1-VXX etc.
+\section{Hamblin's Possibility Semantics}
+
+\noindent A possibility function is a function $p: \F \rightarrow [0,1]$ such that
+\begin{enumerate}[nosep]
+  \item $p(\emptyset) = 0$ 
+  \item $p(W) = 1$
+  \item $p(U \cup V) = \max(p(U),p(V))$
+\end{enumerate}
+\noindent A boolean algebra on $W$ is a set $\F \subseteq \wp(W)$ such that
+\begin{enumerate}[nosep]
+  \item $\emptyset, W \in \F$,
+  \item $A \in \F \Rightarrow \bar{A} \in \F$
+  \item $A,B \in \F \Rightarrow A \cup B \in \F$
+\end{enumerate}
+
+Following \textcite{hamblin59_modal_probab},
+\textcite[][pp.~42]{halpern03_reason_about_uncer} and Yalcin's
+\parencite*{yalcin10_probab_operat} reinterpretation to fit Hamblin's account into modern
+semantics, we define the following: 
+\begin{definition}
+    A \emph{Hamblin possibility model} is a tuple $M = \langle W,R,V,\mathcal{F},\Po\rangle$ such that
+    \begin{itemize}[nosep]
+        \renewcommand\labelitemi{--}
+      \item $W$ is a \mathbb{finite} set of possible worlds,
+      \item $R$ is a binary relation on $W$,
+        \item $V$ is a function $V: \text{Atom} \rightarrow \wp(W)$,
+        \item $\mathcal{F}$ is a function assigning each world $w \in W$ a boolean algebra $\F_w$ on $R(w)$, and 
+          \item $\Po$ is a function assigning each world $w \in W$ a possibility function \\ $p_w: \F_w \rightarrow [0,1]$.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[Hamblin possiblity semantics]
+    \label{def:hambsem}
+    Let $M = \langle M,R,V,\mathcal{F},\Pr \rangle$ be a Hamblin possiblity model, $w \in W$, $\varphi, \psi \in \L$. We define clauses 1-4 just like in Kratzer preferential semantics (Definition \ref{def:kratsem}). We define further:
+    \begin{enumerate}[nosep]
+  \setcounter{enumi}{5}
+      \item $M,w \models \varphi \succeq \psi$ iff $p_w(\lb \varphi \rb^M) \geq p_w(\lb \psi \rb^M) $
+      \item $M,w \models \triangle \varphi$ iff $M,w \models \varphi \succ \neg \varphi$ 
+    \end{enumerate}
+\end{definition}
+
+\section{Yalcin's Probability Semantics}
 
 % \noindent A $\sigma$-algebra $\F$ on $W$ is a subset of $\wp(W)$ satisfying
 % \begin{enumerate}[nosep]
@@ -179,24 +240,24 @@ Introduce the adequacy conditions V1-VXX etc.
 % \noindent A probability function $P $
 
 \begin{definition}
-    A Yalcin-style probability model is a tuple $M = \langle W,R,V,\mathcal{F},\Pr\rangle$ such that
+    A Yalcin probability model is a tuple $M = \langle W,R,V,\mathcal{F},\Pr\rangle$ such that
     \begin{itemize}[nosep]
         \renewcommand\labelitemi{--}
       \item $W$ is a \mathbb{finite} set of possible worlds,
       \item $R$ is a binary relation on $W$,
         \item $V$ is a function $V: \text{Atom} \rightarrow \wp(W)$,
         \item $\mathcal{F}$ is a function assigning each world $w \in W$ a boolean algebra $\F_w$ on $R(w)$, and 
-          \item $\Pr$ is a function assigning each world $w \in W$ a probability function \\ $p_w: \F_w \rightarrow [0,1]$.
+          \item $\Pr$ is a function assigning each world $w \in W$ a probability function \\ $\mu_w: \F_w \rightarrow [0,1]$.
     \end{itemize}
 \end{definition}
 
-\begin{definition}[Yalcin-style semantics]
+\begin{definition}[Yalcin probability semantics]
     \label{def:yalcsem}
-    Let $M = \langle M,R,V,\mathcal{F},\Pr \rangle$ be a Yalcin-style probability model, $w \in W$, $\varphi, \psi \in \L$. We define clauses 1-3 just like in Kratzer-style preferential models (Definition \ref{def:kratsem}). We define further:
+    Let $M = \langle M,R,V,\mathcal{F},\Pr \rangle$ be a Yalcin probability model, $w \in W$, $\varphi, \psi \in \L$. We define clauses 1-3 just like in Kratzer preferential models (Definition \ref{def:kratsem}). We define further:
     \begin{enumerate}[nosep]
-  \setcounter{enumi}{3}
-      \item $M,w \models \varphi \succeq \psi$ iff $p_w(\lb \varphi \rb^M) \geq p_w(\lb \psi \rb^M) $
-      \item $M,w \models \triangle \varphi$ iff $M,w \models \varphi \succ^{M,w} \neg \varphi$ iff $ p_w(\lb \varphi \rb^M) > .5$
+  \setcounter{enumi}{4}
+      \item $M,w \models \varphi \succeq \psi$ iff $\mu_w(\lb \varphi \rb^M) \geq \mu_w(\lb \psi \rb^M) $
+      \item $M,w \models \triangle \varphi$ iff $M,w \models \varphi \succ^{M,w} \neg \varphi$ iff $ \mu_w(\lb \varphi \rb^M) > .5$
     \end{enumerate}
 \end{definition}
 
@@ -283,11 +344,9 @@ Whether some formally specified semantics validates a given inference pattern is
     \end{prooftree}
 \end{center}
 
+\section{Holliday and Icard's Preferential Semantics}
 
 
-
-\section{Holliday and Icard's Generalisation to Measure Semantics}
-\section{Holliday and Icard's Unification of Preferential and Probabilistic Semantics}
 \section{Conclusion}
 What about the $\epsilon$-semantics (Adams, Pearl)? 
 \nocite{hamblin59_modal_probab,holliday13_measur,harrison-trainor17_prefer,kratzer91_modal,lassiter10_gradab,yalcin10_probab_operat,kratzer98_seman}
