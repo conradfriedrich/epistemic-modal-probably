@@ -1,5 +1,5 @@
 \documentclass{article}
-\title{The Epistemic Modal \emph{probable}: Qualitative and Quantitative Accounts}
+\title{The Epistemic Modal \emph{probable}}
 \author{Conrad Friedrich \\ MCMP, LMU Munich }
 \date{\today} 
 
@@ -47,6 +47,7 @@ ibidtracker=context,natbib,doi=false,isbn=false,url=false]{biblatex-chicago}
 \todo{
   \begin{itemize}[nosep]
     \item Write an Introduction
+     \item be perfectly clear as to what happens. SIGNPOST 
   \end{itemize}
 }
 \section{Intensional Semantics}
@@ -61,7 +62,10 @@ NEAT summary in Ivano's script, Class 9, page 3/4
 \todo{\begin{itemize}[nosep]
     \item  Give some natural language motivation
     \item Also show the need for expanding the standard intensional semantics!
-    \item How is probable to be evaluated? MacFarlane's Solipcism.
+    \item How is probable to be evaluated? Epistemic interpretation? MacFarlane's Solipcism.
+    \item Mention how Lassiter has a different, graded adjective based approach.
+    \item Discuss how absolute probability is best reduced to relative likelihood with the negation
+      \item note that there are a lot more interesting problems associated with probable but to have an readable paper need to focus on particulars.
   \end{itemize}
 }
 
@@ -71,7 +75,7 @@ propositional language $\L$ like \textcite{harrison-trainor17_prefer} and
 \[
 \varphi ::= p ~|~ \neg \varphi ~|~ (\varphi \land \psi) ~|~  (\varphi \succeq \psi) ~|~ \triangle\varphi ~|~ \Diamond \varphi
 \]
-The other boolean connectives $(\varphi \rightarrow \psi), (\varphi \vee
+Where $p \in \text{Atom}$, i.e. an atomic formula. The other boolean connectives $(\varphi \rightarrow \psi), (\varphi \vee
 \psi)$ as well as $\top, \bot$ are defined in the standard way from negation and conjunction.
 Define further $\Box \varphi = \neg\Diamond\neg \varphi$.
 The intended readings are as follows:
@@ -82,7 +86,7 @@ The intended readings are as follows:
 \end{align*}
 
 \subsection{Criteria for Adequacy}
-In his \parencite*{yalcin10_probab_operat}, Yalcin critically evaluates Kratzer's relative likelihood account and also Hamblin's account, which is based on the notion of possiblity (resp. plausiblity) measures \parencite{hamblin59_modal_probab}.
+In his \parencite*{yalcin10_probab_operat}, Yalcin critically evaluates Kratzer's relative likelihood account and also Hamblin's account, which is based on the notion of possiblity (resp. plausiblity) functions \parencite{hamblin59_modal_probab}.
 Yalcin does this by following the good philosophical practice of establishing a set of desiderata the accounts can be evaluated against. In the case for judging semantics for a natural language phenomenon, these naturally come in the form of inference patterns that strike one as intuitively valid or invalid.
 The practice is fruitful because it gives criteria to compare different accounts in a transparent and comprehensible fashion, and shifts the focus of the problematic notion of \emph{intuitive plausibility} from judging the accounts themselves to judging the plausibility of the inference patterns.
 Whether some formally specified semantics validates a given inference pattern is then simply not a matter of debate and can be shown mathematically given the assumptions one is forced to make explicit.   
@@ -163,12 +167,14 @@ Whether some formally specified semantics validates a given inference pattern is
     \end{prooftree}
 \end{center}
 
-Yalcin and also \textcite{lassiter10_gradab} introduce an additional criterion
-\todo{
-  \begin{itemize}
-    \item Discuss additional criterion, NEGATIVBESCHEID
-  \end{itemize}
-}
+\subsection{Criteria not Considered}
+Yalcin and also \textcite{lassiter10_gradab} introduce an additional criterion motivated by examples of the following sort:
+\begin{enumerate}[nosep]
+  \item There is a 60\% probability that it is raining.
+  \item $\varphi$ is twice as likely as $\psi$.
+\end{enumerate}
+Yalcin argues that sentences of this type are ``used and interpreted by speakers who are innocent of the mathematical theory of probability'' \parencite[][p.~923]{yalcin10_probab_operat} and that a semantics for probability operators in natural language must be able to account for them, while Lassiter merely states it as a problem for preferential semantics \parencite[][p.~210]{lassiter10_gradab}. Both share the implicit assumption that both the qualitative talk (`probably $\varphi$') and the quantitative talk like in (2) above need to be accounted for by the same semantics. Given the methodological practice of frequent appeal to intuition to support claims of this sort, the assumption can also be doubted on the same grounds. It is equally plausible that people usually employ different notions of \emph{probable} (or \emph{likely}) in the qualitative and the quantitative case. Qualitative talk is quotidian and ubiquitous, whereas quantitative talk implies the notion of a probability function. It might be the case that speakers use it `innocently' without recourse to probability theory, but it's a different question of whether they do so competently. We argue that they might as well don't. The result is that the criterion does not necessarily help us evaluate adequate semantics for likelihood talk, and thus will be excluded from the present considerations.
+
 \section{Kratzer's Preferential Semantics}
 \todo{
   \begin{itemize}
@@ -183,29 +189,28 @@ This list is by no means complete.
 Kratzer postulates that modality is always relative to a certain kind of interpreting the modalities involved, following Peirce (cite).
 She set out to formulate these different modalities in a common framework such that we'd only need to specify some parameters of the framework to determine the relevant modalities and give truth conditions for sentences involving modalities, while focussing on epistemic modals.
 
-Kratzer is unhappy with what she calls the \emph{standard analysis} as is gives the wrong verdict in two salient scenarios.
---maybe also go through kratzer's examples which further motivate her decisions--maybe explain why we don't have an even easier definition.
+Kratzer is unhappy with what she calls the \emph{standard analysis} as it gives the wrong verdict in two salient scenarios.
+These are concerned with conflicting rules of law and an a combination of indicative conditionals and modals, respectively.
+We will not reiterate these scenarios here, but--spoiler alert--Kratzer's theory manages to do them justice.
 
-Importantly, the account for modality needs to include graded modalities, of the following sort:
+More relevantly, the account for modality according to Kratzer needs to include graded modalities, of the following sort:
 \begin{enumerate}[nosep,label=\alph*)]
   \item Michl must be the murderer.
   \item Michl is probably the murderer.
   \item There is a good possibility that Michl is the murderer.
   \item Michl might be the murderer.
 \end{enumerate}
-Here, the modalities are listed in decreasing strength, such that the intended
-reading is that a) implies b), b) implies c), and so forth.
-Note that is a qualitative approach to graded modals, as opposed to quantitative approaches, employing a scale structure in the semantics.
+Here, the modalities are listed in decreasing strength, such that the intended reading is that a) implies b), b) implies c), and c) implies d).
+Note that is a qualitative approach to graded modals, as opposed to quantitative approaches, employing a scale structure in the semantics, as described by \textcite{lassiter10_gradab}.
 
 \todo{\begin{itemize}[nosep]
   \item The account presented has a couple of advantages.
 \item Neatly fits with the other modals, just change f and g
-\item Gives an account of probable without resorting to probability measures (give argument by Hamblin - maybe more in philosophy texts? check titelbaum)
-\item solves problems describes in Kratzer text (probably dont reiterate)  
-\end{itemize}
+\item Gives an account of probable without resorting to probability functions (give argument by Hamblin - maybe more in philosophy texts? check titelbaum)
+\end{itemie}
 }
 How do the semantics look like?
-we assume a set $W$ of possible worlds, a set of propositions $P$ such that elements of $P$ are subsets of $W$, and assume that a proposition $p$ is true at $w$ iff $w \in p$.
+We assume a set $W$ of possible worlds, a set of propositions $P$ such that elements of $P$ are subsets of $W$, and assume that a proposition $p$ is true at $w$ iff $w \in p$.
 The crucial element in Kratzer's semantics that distinguishes her account from most simple semantics via Kripke frames with an accessibility relation is the \emph{conversational background}.
 It has two components.
 
@@ -288,6 +293,7 @@ For $p,q \subseteq W$ we define an induced order on $\wp(W)$:
     \end{enumerate}
 \end{definition}
 
+\todo{FORMALIZE MIGHT PHI}
 \subsection{Discussion}
 
 How does Kratzer's account fare with respect to the adequacy conditions we defined?
@@ -311,28 +317,27 @@ Kratzer's account does \emph{not} validate (V11-V12).
 \textcite[pp.~935, note~8]{yalcin10_probab_operat} gives a countermodel. In addition, the account \emph{does} validate pattern (I1), as can easily be seen. This is already an unwelcome result. Additionally, (I1) together with (V5) entails (I2) \parencite[p.~922]{yalcin10_probab_operat}. That is, on this account, anything that is probable is a least as likely as any tautology. This is, of course, a ruinous result.
 
 \section{Hamblin's Possibility Semantics}
-\todo{
-  \begin{itemize}
-    \item Write an Introduction and Purpose compared to Kratzer
-  \end{itemize}}
+Already in the 1950's, \textcite{hamblin59_modal_probab} developed a semantics for the \emph{probable}-operator based on what he called plausibility and more recently is referred to as possiblity. Possibility functions are quite similar to probability functions, but do not require finite additivity. They have been used to model an agent's belief state when the focus is on modeling the agent's surprise as well as ignorance towards some proposition. They are useful in modeling vagueness and have the advantage over probability functions that the possibility of the union of two propositions is uniquely determined by the marginal possibilities of the propositions, while probabilities only provide bounds unless the propositions are disjoint \parencite[][p.~45]{halpern03_reason_about_uncer}.
+
+Why should possibilities be particularly appropriate in semantics? Hamblin does not present a clear argument, but refers to that the weighing of reasons is captured better in possibilities than in probabilities \parencite[][p.~240]{hamblin59_modal_probab}.
+Yalcin gives his interpretation of Hamblin as that probabilities are too idealized, and possibilities provide a less restricted formal structure and are thus more appropriate to model everyday likelihood talk.
+In any case, let us look at the formal setup and evaluate whether Hamblin's account holds up to our criteria. 
+The account presented here is a reinterpretation based on \textcite{hamblin59_modal_probab}, \textcite[][pp.~42]{halpern03_reason_about_uncer} and \textcite{yalcin10_probab_operat} to fit the account into contemporary semantics.
+
 \subsection{Formal Setup}
 \noindent Let $W$ be a set. A boolean algebra on $W$ is a set $\F \subseteq \wp(W)$ such that
 \begin{enumerate}[nosep]
   \item $\emptyset, W \in \F$,
-  \item $A \in \F \Rightarrow \bar{A} \in \F$
-  \item $A,B \in \F \Rightarrow A \cup B \in \F$
+  \item $A \in \F \Rightarrow \bar{A} \in \F$, and
+  \item $A,B \in \F \Rightarrow A \cup B \in \F$.
 \end{enumerate}
 
 \noindent Let $\F$ be a boolean algebra. A possibility function is a function $p: \F \rightarrow [0,1]$ such that
 \begin{enumerate}[nosep]
-  \item $p(\emptyset) = 0$ 
-  \item $p(W) = 1$
-  \item $p(U \cup V) = \max(p(U),p(V))$
+  \item $p(\emptyset) = 0$,
+  \item $p(W) = 1$, and
+  \item $p(U \cup V) = \max(p(U),p(V))$.
 \end{enumerate}
-Following \textcite{hamblin59_modal_probab},
-\textcite[][pp.~42]{halpern03_reason_about_uncer} and Yalcin's
-\parencite*{yalcin10_probab_operat} reinterpretation to fit Hamblin's account into modern
-semantics, we define the following: 
 \begin{definition}
     A \emph{Hamblin possibility model} is a tuple $M = \langle W,R,V,\mathcal{F},\Po\rangle$ such that
     \begin{itemize}[nosep]
