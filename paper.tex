@@ -71,6 +71,82 @@ intended readings for the Boolean operators are also standard, we add the follow
 \end{align*}
 We might leave uninterpreted some elements which don't figure prominently in the respective theory discussed at that moment.
 
+In his \parencite*{yalcin10_probab_operat}, Yalcin critically evaluates Kratzer's relative likelihood account and also Hamblin's account, which is based on the notion of possiblity (resp. plausiblity) measures \parencite{hamblin59_modal_probab}.
+Yalcin does this by following the good philosophical practice of establishing a set of desiderata the accounts can be evaluated against. In the case for judging semantics for a natural language phenomenon, these naturally come in the form of inference patterns that strike one as intuitively valid or invalid.
+The practice is fruitful because it gives criteria to compare different accounts in a transparent and comprehensible fashion, and shifts the focus of the problematic notion of \emph{intuitive plausibility} from judging the accounts themselves to judging the plausibility of the inference patterns.
+Whether some formally specified semantics validates a given inference pattern is then simply not a matter of debate and can be shown mathematically given the assumptions one is forced to make explicit.   
+\begin{center}
+    \begin{prooftree}
+        \hypo{ \triangle \varphi } \infer1[(V1)]{ \neg \triangle \neg \varphi}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+        \hypo{ \triangle (\varphi \land \psi)} \infer1[(V2)]{ \triangle \varphi \land \triangle \psi}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+        \hypo{ \triangle \varphi} \infer1[(V3)]{ \triangle (\varphi \lor \psi)}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+    \hypo{ } \infer1[(V4)]{ \varphi \succeq \bot}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+    \hypo{ } \infer1[(V5)]{ \top \succeq \varphi}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+    \hypo{ \Box \varphi } \infer1[(V6)]{ \triangle \varphi}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+    \hypo{ \triangle \varphi } \infer1[(V7)]{ \Diamond \varphi}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+    \hypo{ \psi \succeq \varphi } \hypo{\triangle \varphi} \infer2[(V11)]{ \triangle \psi}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+    \hypo{ \psi \succeq \varphi } \hypo{\varphi \succeq \neg\varphi}\infer2[(V12)]{ \psi \succeq \neg\psi}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+    \hypo{ \varphi \succeq \psi } \hypo{\varphi \succeq \chi}\infer2[(I1)]{ \varphi \succeq (\psi \lor \chi)}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+    \hypo{ \varphi \succeq \neg \varphi } \infer1[(I2)]{ \varphi \succeq \psi}
+    \end{prooftree}
+\end{center}
+
+\begin{center}
+\begin{prooftree}
+    \hypo{ \triangle \varphi } \infer1[(I3)]{ \varphi \succeq \psi}
+    \end{prooftree}
+\end{center}
+
 \section{Kratzer's Preferential Semantics}
 
 For \textcite{kratzer91_modal} epistemic modals like \emph{probably} are just a special case of a more general class of modal auxiliaries.
@@ -187,7 +263,7 @@ The account presented has a couple of advantages.
 But it also suffers from crippling counterexamples: 
 
 \section{Hamblin's Possibility Semantics}
-
+\subsection{Formal Setup}
 \noindent A possibility function is a function $p: \F \rightarrow [0,1]$ such that
 \begin{enumerate}[nosep]
   \item $p(\emptyset) = 0$ 
@@ -226,7 +302,7 @@ semantics, we define the following:
       \item $M,w \models \triangle \varphi$ iff $M,w \models \varphi \succ \neg \varphi$ 
     \end{enumerate}
 \end{definition}
-
+\subsection{Discussion}
 \section{Yalcin's Probability Semantics}
 
 % \noindent A $\sigma$-algebra $\F$ on $W$ is a subset of $\wp(W)$ satisfying
@@ -238,7 +314,7 @@ semantics, we define the following:
 % For $A \subseteq W, i \in \mathbb{N}$. Let $\mathfrak{F^W}$ be the set of sigma algebras on subsets of $W$.
 
 % \noindent A probability function $P $
-
+\subsection{Formal Setup}
 \begin{definition}
     A Yalcin probability model is a tuple $M = \langle W,R,V,\mathcal{F},\Pr\rangle$ such that
     \begin{itemize}[nosep]
@@ -261,92 +337,33 @@ semantics, we define the following:
     \end{enumerate}
 \end{definition}
 
-
-In his \parencite*{yalcin10_probab_operat}, Yalcin critically evaluates Kratzer's relative likelihood account and also Hamblin's account, which is based on the notion of possiblity (resp. plausiblity) measures \parencite{hamblin59_modal_probab}.
-Yalcin does this by following the good philosophical practice of establishing a set of desiderata the accounts can be evaluated against. In the case for judging semantics for a natural language phenomenon, these naturally come in the form of inference patterns that strike one as intuitively valid or invalid.
-The practice is fruitful because it gives criteria to compare different accounts in a transparent and comprehensible fashion, and shifts the focus of the problematic notion of \emph{intuitive plausibility} from judging the accounts themselves to judging the plausibility of the inference patterns.
-Whether some formally specified semantics validates a given inference pattern is then simply not a matter of debate and can be shown mathematically given the assumptions one is forced to make explicit.   
-\begin{center}
-    \begin{prooftree}
-        \hypo{ \triangle \varphi } \infer1[(V1)]{ \neg \triangle \neg \varphi}
-    \end{prooftree}
-\end{center}
-
-\begin{center}
-\begin{prooftree}
-        \hypo{ \triangle (\varphi \land \psi)} \infer1[(V2)]{ \triangle \varphi \land \triangle \psi}
-    \end{prooftree}
-\end{center}
-
-\begin{center}
-\begin{prooftree}
-        \hypo{ \triangle \varphi} \infer1[(V3)]{ \triangle (\varphi \lor \triangle \psi}
-    \end{prooftree}
-\end{center}
-
-\begin{center}
-\begin{prooftree}
-    \hypo{ } \infer1[(V4)]{ \varphi \succeq \bot}
-    \end{prooftree}
-\end{center}
-
-\begin{center}
-\begin{prooftree}
-    \hypo{ } \infer1[(V5)]{ \top \succeq \varphi}
-    \end{prooftree}
-\end{center}
-
-\begin{center}
-\begin{prooftree}
-    \hypo{ \Box \varphi } \infer1[(V6)]{ \triangle \varphi}
-    \end{prooftree}
-\end{center}
-
-\begin{center}
-\begin{prooftree}
-    \hypo{ \triangle \varphi } \infer1[(V7)]{ \Diamond \varphi}
-    \end{prooftree}
-\end{center}
-
-\begin{center}
-\begin{prooftree}
-    \hypo{ \psi \succeq \varphi } \hypo{\triangle \varphi} \infer2[(V11)]{ \triangle \psi}
-    \end{prooftree}
-\end{center}
-
-\begin{center}
-\begin{prooftree}
-    \hypo{ \psi \succeq \varphi } \hypo{\triangle \varphi} \infer2[(V8)]{ \triangle \psi}
-    \end{prooftree}
-\end{center}
-
-\begin{center}
-\begin{prooftree}
-    \hypo{ \psi \succeq \varphi } \hypo{\varphi \succeq \neg\varphi}\infer2[(V12)]{ \psi \succeq \neg\psi}
-    \end{prooftree}
-\end{center}
-
-\begin{center}
-\begin{prooftree}
-    \hypo{ \varphi \succeq \psi } \hypo{\varphi \succeq \chi}\infer2[(I1)]{ \varphi \succeq (\psi \lor \chi)}
-    \end{prooftree}
-\end{center}
-
-\begin{center}
-\begin{prooftree}
-    \hypo{ \varphi \succeq \neg \varphi } \infer1[(I2)]{ \varphi \succeq \psi}
-    \end{prooftree}
-\end{center}
-
-\begin{center}
-\begin{prooftree}
-    \hypo{ \triangle \varphi } \infer1[(I3)]{ \varphi \succeq \psi}
-    \end{prooftree}
-\end{center}
-
+\subsection{Discussion}
 \section{Holliday and Icard's Preferential Semantics}
+\subsection{Formal Setup}
+\begin{definition}
+    A Holliday and Icard preferential model is a tuple $M = {\langle
+      W,R,V,\succeq\rangle}$ such that
+    \begin{itemize}[nosep]
+        \renewcommand\labelitemi{--}
+      \item $W$ is a set of possible worlds,
+      \item $R$ is a binary relation on $W$,
+      \item $V$ is a function $V: \text{ Atom } \rightarrow \wp(W)$, and
+      \item $\succeq$ is a function assigning each world $w \in W$ a preorder
+        (reflexive and transitive binary relation) $\geq^{M,w}$ on $W$. 
+    \end{itemize}
+\end{definition}
+Further, for two proposition $A,B \subseteq W$ we define
+\begin{multline}
+    \label{eq:injection}A \succeq^{M,w} B :\iff \text{ there exists an injective function } f: B \rightarrow A \\ \text{ such that } f(x) \geq^{M,w} x \text{ for all } x \in B.
+\end{multline}
+
+\begin{definition}[Holliday and Icard preferential semantics] Let $M = {\langle
+      W,R,V,\succeq \rangle}$, $w \in W, \varphi,\psi \in \L$ and let $\succeq^{M,w}$ be the order on $W$ defined by Equation \ref{eq:injection}. We the define clauses 1-6 just like in Kratzer preferential semantics (Definition \ref{def:kratsem}).
+\end{definition}
 
 
+
+\subsection{Discussion}
 \section{Conclusion}
 What about the $\epsilon$-semantics (Adams, Pearl)? 
 \nocite{hamblin59_modal_probab,holliday13_measur,harrison-trainor17_prefer,kratzer91_modal,lassiter10_gradab,yalcin10_probab_operat,kratzer98_seman}
