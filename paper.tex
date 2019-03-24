@@ -10,6 +10,7 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{stmaryrd}
+\usepackage{textcomp}
 \usepackage{enumitem}
 \usepackage{setspace}
 
@@ -53,30 +54,34 @@ ibidtracker=context,natbib,doi=false,isbn=false,url=false]{biblatex-chicago}
 \tableofcontents
 \section{Introduction}
 
-\todo{
-  \begin{itemize}[nosep]
-    \item Write an Introduction
-     \item be perfectly clear as to what happens. SIGNPOST 
-  \end{itemize}
-}
+What do we mean when we say something like `It is likely going to rain' or `I probably left my car keys at home'?
+This paper studies formal accounts which provide a semantical analysis of epistemic modals like \emph{likely} and \emph{probable}.
+Towards this goal, we survey the literature in philosophy and formal semantics proposing and evaluating such accounts.
+By establishing a list of criteria such an account should fulfill, we give a comprehensible and readily criticizable evaluation of the accounts. To make things easier to compare, we provide a common propositional language and define the semantics of the different accounts directly for this language. Thus the purpose of this paper is to make the accounts as transparently comparable as possible, and then evaluate them according to a set of specification.
 
-\subsection{Intensional Semantics}
-In this paper, we will not be concerned with type theoretical considerations. It seems also that the relevant literature is not very keen on discussion that. One reason might be that it is rather simple. We just view the \emph{probable}-operator as an operator on sentences, such that we just add something along the lines of `if $\varphi:t$ then $\triangle \varphi:t$' to our type theory. The interesting developments for the purposes of this paper take place when we enrich the model for our calculus. As a further simplification, we will only be concerned with a simple propositional language to not add further complexity by considering first order models, as will be described in the next section.
+The literature provides a natural classification into qualitative and quantitative accounts of analyzing \emph{probable}-talk. We will see that both types of accounts provide adequate analysis according to the criteria we introduce.
+
+In order to introduce the topic, we introduce Kratzer's semantics a bit more extensively than in the subsequent presentations.
+
+The paper is structured as follows. First, we'll briefly introduce \emph{probable} in the context of epistemic modals. Then we will establish a set of criteria which a semantic theory for \emph{probable} should satisfy. We will discuss why these criteria and which additional criteria we decided to or had to leave out of this paper. In the subsequent sections, we will present and critically evaluate four different accounts for epistemic modals. Two of these are qualitative, two are quantitative in nature. For each of the accounts, we will first introduce the formal structure in some detail and then discuss the account according to our established criteria. We mostly follow \textcite{yalcin10_probab_operat} and \textcite{holliday13_measur} in our exposition.
+
+\subsection{Type Theory and Intensional Semantics}
+A quick word regarding the connection to type theory. In this paper, we will not be concerned with type theoretical considerations. It seems that also in the relevant literature authors are not very keen on discussing the connection. One reason might be that it is rather straightforward and uninteresting: here, we just view the \emph{probable}-operator as an operator on sentences, such that we merely add something along the lines of `if $\varphi:t$ then $\triangle \varphi:t$' to our type theory. The interesting developments for the purposes of this paper take place when we enrich the model for our calculus. As a further simplification, we will only be concerned with a simple propositional language instead of a first order one.
 
 \section{The Epistemic Modal \emph{probable}}
-\todo{\begin{itemize}[nosep]
-    \item  Give some natural language motivation
-    \item Also show the need for expanding the standard intensional semantics!
-    \item How is probable to be evaluated? Epistemic interpretation? MacFarlane's Solipcism.
-    \item Mention how Lassiter has a different, graded adjective based approach.
-    \item Discuss how absolute probability is best reduced to relative likelihood with the negation
-      \item note that there are a lot more interesting problems associated with probable but to have an readable paper need to focus on particulars.
-  \end{itemize}
-}
+Epistemic modals are ubiquitous in everyday conversation.
+It is not entirely obvious, however, what exactly one expresses when exclaiming, e.g. `John can't be running!' after seeing his shoes not on the hook they are usually hanging.
+\textcite{macfarlane11_are_asses_sensit} offers the interpretation that these claims have to do with the speakers knowledge and what is compatible with it.
+`John can't be running' does not express a metaphysical impossibility, rather, it is incompatible with what the speaker knows or believes.
+This is what we'll adopt here, too.
+There are a host of interesting philosophical and linguistic problems associated with uttering sentences involving epistemic modals (cf. \cite{yalcin07_epist_modal}), which will mostly not be the focus of this paper.
+Rather, we will concern ourselves with analyzing \emph{probable}.
+The epistemic modal \emph{probable} is more nuanced and is subject to grading:
+something can reasonably be judged more or less probable. It comes in comparative (e.g. `$\varphi$ is at least as likely as $\psi$') and absolute (e.g. `probably $\varphi$') flavor.
+Throughout this paper, we will assume that both types are closely related: absolute \emph{probable}-talk is just comparative \emph{probable}-talk `in disguise'.
 
-To base the following discussions on a common language, we define a
-propositional language $\L$ like \textcite{harrison-trainor17_prefer} and
-\textcite{holliday13_measur} do:
+
+To base the following discussions on a common language, we define a propositional language $\L$ (cf. \cite{harrison-trainor17_prefer}):
 \[
 \varphi ::= p ~|~ \neg \varphi ~|~ (\varphi \land \psi) ~|~  (\varphi \succeq \psi) ~|~ \triangle\varphi 
 \]
@@ -93,14 +98,18 @@ In his \parencite*{yalcin10_probab_operat}, Yalcin critically evaluates Kratzer'
 Yalcin does this by following the good philosophical practice of establishing a set of desiderata the accounts can be evaluated against. In the case for judging semantics for a natural language phenomenon, these naturally come in the form of inference patterns that strike one as intuitively valid or invalid.
 The practice is fruitful because it gives criteria to compare different accounts in a transparent and comprehensible fashion, and shifts the focus of the problematic notion of \emph{intuitive plausibility} from judging the accounts themselves to judging the plausibility of the inference patterns.
 Whether some formally specified semantics validates a given inference pattern is then simply not a matter of debate and can be shown mathematically given the assumptions one is forced to make explicit.   
-The rules are not meant to characterize a logic, of course.
+The rules are not meant to characterize a logic, of course. Let us briefly go through all criteria we evaluate the accounts by in this paper.
+The criteria are stated in the form of inference patterns. The inferences here can just be understood as classical truth preservation.
 
-\todo{
-\begin{itemize}[nosep]
-  \item Motivate and describe the conditions
-  \item Describe what inference means (truth preservation)
-\end{itemize}
-}
+We follow \textcite{yalcin10_probab_operat} quite closely in the rest of this subsection. 
+
+What do we mean by \emph{valid} in the following? We refer here to intuitively reasonable inference patterns. We ascribe a competent speaker of English to agree in validating or rejecting a pattern.
+
+Patterns (V1-V5) are clearly valid:
+Intuitively, it's clear that not both a proposition and its negation should be considered probable, expressed in (V1).
+(V2) claims that if a conjunction is probable, both of its conjuncts must be, too.
+Since a disjunction shouldn't be less probable than either of its disjuncts, (V3) also is intuitively valid.
+
 \begin{center}
     \begin{prooftree}
         \hypo{ \triangle \varphi } \infer1[(V1)]{ \neg \triangle \neg \varphi}
@@ -112,12 +121,13 @@ The rules are not meant to characterize a logic, of course.
         \hypo{ \triangle (\varphi \land \psi)} \infer1[(V2)]{ \triangle \varphi \land \triangle \psi}
     \end{prooftree}
 \end{center}
-
 \begin{center}
 \begin{prooftree}
         \hypo{ \triangle \varphi} \infer1[(V3)]{ \triangle (\varphi \lor \psi)}
     \end{prooftree}
 \end{center}
+
+\noindent Clearly, no proposition should be less likely than a contradiction, as (V4) states, or more likely than a tautology, as (V5) states.
 
 \begin{center}
 \begin{prooftree}
@@ -131,23 +141,32 @@ The rules are not meant to characterize a logic, of course.
     \end{prooftree}
 \end{center}
 
+\noindent (V11) states that if $\varphi$ is probable, and $\psi$ is more likely than $\varphi$, $\psi$ should be probable, too. This is clearly valid.
 \begin{center}
 \begin{prooftree}
     \hypo{ \psi \succeq \varphi } \hypo{\triangle \varphi} \infer2[(V11)]{ \triangle \psi}
     \end{prooftree}
 \end{center}
 
+\noindent (V12) is less obvious, but still intuitively valid.
 \begin{center}
 \begin{prooftree}
     \hypo{ \psi \succeq \varphi } \hypo{\varphi \succeq \neg\varphi}\infer2[(V12)]{ \psi \succeq \neg\psi}
     \end{prooftree}
 \end{center}
 
+\noindent The concluding three patterns are intuitively invalid. Yalcin offers the following counterexample to (I1) when throwing a coin, which is clearly problematic.
+\begin{quote}
+   Heads is at least as likely as tails. Heads is at least as likely as heads. So, heads is at least as likely as heads or tails. 
+\end{quote}
+
 \begin{center}
 \begin{prooftree}
     \hypo{ \varphi \succeq \psi } \hypo{\varphi \succeq \chi}\infer2[(I1)]{ \varphi \succeq (\psi \lor \chi)}
     \end{prooftree}
 \end{center}
+
+(I2) and (I3) are even more obviously undesirable. But some semantics, as we will see, still validate these patterns.
 
 \begin{center}
 \begin{prooftree}
@@ -178,6 +197,7 @@ Suppose Bloggs has 420 tickets, and 580 other players have one ticket each \pare
 In addition, we weren't able to include formal considerations on how \emph{probable}-talk relates to other epistemic modals like \emph{might, must}, etc., due to time and place constraints, although this aspect is particularly lending itself to analysis and would be the first to consider in a longer paper.
 
 \section{Kratzer's Preferential Semantics}
+
 For \textcite{kratzer91_modal} epistemic modals like \emph{probably} are just a special case of a more general class of modal auxiliaries.
 These can be epistemic (e.g. `Jockl must have been the murderer [in view of the available evidence]'), deontic (e.g. `Jockl must go to jail [in view of what the law provides]'), or circumstancial (e.g. `Jockl can lift the rock [given the weight of the rock and the conditions of Jockl's muscles, etc.]').
 Further, there are teleological (in view of certain aims), bouletic (in view of certain wishes), and doxastic (in view of certain beliefs) modalities.
@@ -484,14 +504,48 @@ We can instead employ the model Holliday and Icard provide to construct a counte
 Fix a model $M$ and a world $w$. Let $W = \{abcd\}$, ordered by $M$ like so: $a > b > c > d$. Let $A = \{ab\}, B = \{bc\}, C = \{cd\}$. It's easy to see that by (\ref{eq:injection}), we have $A \succ B \succ C$. However, we do not have $A \succ (B \cup C)$, since we can't construct an injection like required. Hence, (I1) is not validated. A clear improvement over Kratzer's semantics.
 
 \section{Conclusion}
-Maybe make an overview table from org mode
-\todo{
-  \begin{itemize}
-    \item Write Conclusion and further studies
-  \end{itemize}
-}
-What about the $\epsilon$-semantics (Adams, Pearl)? 
+\begin{figure}
+\begin{center}
+\begin{tabular}{lcccc}
+ & Kratzer & Hamblin & Yalcin & Holliday \& Icard\\
+\hline
+V1 & \(\checkmark\) & \(\checkmark\) & \(\checkmark\) & \(\checkmark\)\\
+V2 & \(\checkmark\) & \(\checkmark\) & \(\checkmark\) & \(\checkmark\)\\
+V3 & \(\checkmark\) & \(\checkmark\) & \(\checkmark\) & \(\checkmark\)\\
+V4 & \(\checkmark\) & \(\checkmark\) & \(\checkmark\) & \(\checkmark\)\\
+V5 & \(\checkmark\) & \(\checkmark\) & \(\checkmark\) & \(\checkmark\)\\
+\hline
+V11 & \texttimes{} & \(\checkmark\) & \(\checkmark\) & \(\checkmark\)\\
+V12 & \texttimes{} & \(\checkmark\) & \(\checkmark\) & \(\checkmark\)\\
+\hline
+I1 & \texttimes{} & \texttimes{} & \(\checkmark\) & \(\checkmark\)\\
+I2 & \texttimes{} & \texttimes{} & \(\checkmark\) & \(\checkmark\)\\
+I3 & \(\checkmark\) & \texttimes{} & \(\checkmark\) & \(\checkmark\)\\
+\end{tabular}
+\end{center}
+\caption{Overview of which account satisfies which criteria. Note that for
+  (I1-I3), `$\checkmark$' represents the account \emph{invalidating} that pattern.}
+\label{fig:table}
+\end{figure}
+In this paper, we compared different accounts for semantics of
+\emph{probable}-talk. The criteria we established were not satisfied by
+Kratzer's or Hamblin's account. Since Yalcin's (and also Lassiter's) probability
+semantics satisfy all criteria, it looked like the debate between preferential
+and probabilistic or qualitative and quantitative semantics had been settled
+with regards to the criteria. But Holliday and Icard improved on Kratzer's
+account such that it, too, satisfied the criteria. Thus at least from this
+vantage point, both types of semantics are able to make valuable contributions
+to explaining what we mean by \emph{probable}. An summarizing overview is
+provided in Figure \ref{fig:table}. 
 
-\nocite{hamblin59_modal_probab,holliday13_measur,harrison-trainor17_prefer,kratzer91_modal,lassiter10_gradab,yalcin10_probab_operat,kratzer98_seman}
+Of course, this paper only scratches the surface of this topic. First, we
+severely limited the choice of criteria. Much more can be said as to how
+\emph{probable}-talk interfaces with other modals like \emph{might} or
+\emph{must}, or with indicative conditionals. We did not address the related
+discussion of graded modals and semantics on a scale like in Kennedy 2007 (look
+up reference in Lassiter). What's more, there is a host of interesting further
+work by \textcite{holliday13_measur} and \textcite{harrison-trainor17_prefer} ...
+\todo{Finish this section}
+
  \printbibliography
 \end{document}
