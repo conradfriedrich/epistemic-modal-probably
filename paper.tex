@@ -1,8 +1,4 @@
 \documentclass{article}
-\title{The Epistemic Modal \emph{probable}}
-\author{Conrad Friedrich \\ MCMP, LMU Munich }
-\date{\today} 
-
 \usepackage[utf8]{inputenc}
 
 % \usepackage{aaai}
@@ -41,6 +37,13 @@ ibidtracker=context,natbib,doi=false,isbn=false,url=false]{biblatex-chicago}
 \newcommand{\Po}{\text{Po}}
 
 \newcommand{\succeqK}{\succeq^K_{M,w}}
+\newcommand\wordcount{\input{paper.sum}} 
+
+\title{The Epistemic Modal \emph{probable}}
+\author{Conrad Friedrich \\ MCMP, LMU Munich \\ \wordcount words}
+\date{\today} 
+
+
 \begin{document}
 
 \onehalfspacing
@@ -56,14 +59,10 @@ ibidtracker=context,natbib,doi=false,isbn=false,url=false]{biblatex-chicago}
      \item be perfectly clear as to what happens. SIGNPOST 
   \end{itemize}
 }
-\section{Intensional Semantics}
-\todo{ \begin{itemize}[nosep]
-  \item Tie the paper into framework used in class
-\end{itemize} }
 
-Note that we don't need first order logic. 
-Abstracted away from syntax, just look at the semantics.
-NEAT summary in Ivano's script, Class 9, page 3/4
+\subsection{Intensional Semantics}
+In this paper, we will not be concerned with type theoretical considerations. It seems also that the relevant literature is not very keen on discussion that. One reason might be that it is rather simple. We just view the \emph{probable}-operator as an operator on sentences, such that we just add something along the lines of `if $\varphi:t$ then $\triangle \varphi:t$' to our type theory. The interesting developments for the purposes of this paper take place when we enrich the model for our calculus. As a further simplification, we will only be concerned with a simple propositional language to not add further complexity by considering first order models, as will be described in the next section.
+
 \section{The Epistemic Modal \emph{probable}}
 \todo{\begin{itemize}[nosep]
     \item  Give some natural language motivation
@@ -79,16 +78,14 @@ To base the following discussions on a common language, we define a
 propositional language $\L$ like \textcite{harrison-trainor17_prefer} and
 \textcite{holliday13_measur} do:
 \[
-\varphi ::= p ~|~ \neg \varphi ~|~ (\varphi \land \psi) ~|~  (\varphi \succeq \psi) ~|~ \triangle\varphi ~|~ \Diamond \varphi
+\varphi ::= p ~|~ \neg \varphi ~|~ (\varphi \land \psi) ~|~  (\varphi \succeq \psi) ~|~ \triangle\varphi 
 \]
-Where $p \in \text{Atom}$, i.e. an atomic formula. The other boolean connectives $(\varphi \rightarrow \psi), (\varphi \vee
+Where $p$ is an atomic formula, i.e. $p \in \text{Atom}$. The other boolean connectives $(\varphi \rightarrow \psi), (\varphi \vee
 \psi)$ as well as $\top, \bot$ are defined in the standard way from negation and conjunction.
-Define further $\Box \varphi = \neg\Diamond\neg \varphi$.
 The intended readings are as follows:
 \begin{align*}
   \varphi \succeq \psi &: \varphi \text{ is at least as likely as } \psi. \\
   \triangle \varphi &:\text{probably } \varphi. \\ 
-                      \Diamond \varphi &: \text{It might be that } \varphi.
 \end{align*}
 
 \subsection{Criteria for Adequacy}
@@ -97,9 +94,11 @@ Yalcin does this by following the good philosophical practice of establishing a 
 The practice is fruitful because it gives criteria to compare different accounts in a transparent and comprehensible fashion, and shifts the focus of the problematic notion of \emph{intuitive plausibility} from judging the accounts themselves to judging the plausibility of the inference patterns.
 Whether some formally specified semantics validates a given inference pattern is then simply not a matter of debate and can be shown mathematically given the assumptions one is forced to make explicit.   
 The rules are not meant to characterize a logic, of course.
+
 \todo{
 \begin{itemize}[nosep]
   \item Motivate and describe the conditions
+  \item Describe what inference means (truth preservation)
 \end{itemize}
 }
 \begin{center}
@@ -129,18 +128,6 @@ The rules are not meant to characterize a logic, of course.
 \begin{center}
 \begin{prooftree}
     \hypo{ } \infer1[(V5)]{ \top \succeq \varphi}
-    \end{prooftree}
-\end{center}
-
-\begin{center}
-\begin{prooftree}
-    \hypo{ \Box \varphi } \infer1[(V6)]{ \triangle \varphi}
-    \end{prooftree}
-\end{center}
-
-\begin{center}
-\begin{prooftree}
-    \hypo{ \triangle \varphi } \infer1[(V7)]{ \Diamond \varphi}
     \end{prooftree}
 \end{center}
 
@@ -188,19 +175,16 @@ Also not considered in this paper are more advanced discussions of intuitive val
 Suppose Bloggs has 420 tickets, and 580 other players have one ticket each \parencite[p.~931]{yalcin10_probab_operat}. Is the following true or false?
 `Probably, Bloggs is the winner of the lottery'. Although the chance of Bloggs winning is less than him not winning, intuitions here are apparently mixed. Throughout this paper, however, we assume that `probably $\varphi$' is equivalent to `$\varphi$ is more probable than not', ignoring the problematic intuitions just described.
 
+In addition, we weren't able to include formal considerations on how \emph{probable}-talk relates to other epistemic modals like \emph{might, must}, etc., due to time and place constraints, although this aspect is particularly lending itself to analysis and would be the first to consider in a longer paper.
+
 \section{Kratzer's Preferential Semantics}
-\todo{
-  \begin{itemize}
-    \item Clean up this section a bit
-  \end{itemize}
-}
 For \textcite{kratzer91_modal} epistemic modals like \emph{probably} are just a special case of a more general class of modal auxiliaries.
 These can be epistemic (e.g. `Jockl must have been the murderer [in view of the available evidence]'), deontic (e.g. `Jockl must go to jail [in view of what the law provides]'), or circumstancial (e.g. `Jockl can lift the rock [given the weight of the rock and the conditions of Jockl's muscles, etc.]').
 Further, there are teleological (in view of certain aims), bouletic (in view of certain wishes), and doxastic (in view of certain beliefs) modalities.
 This list is by no means complete.
 
-Kratzer postulates that modality is always relative to a certain kind of interpreting the modalities involved, following Peirce (cite).
-She set out to formulate these different modalities in a common framework such that we'd only need to specify some parameters of the framework to determine the relevant modalities and give truth conditions for sentences involving modalities, while focussing on epistemic modals.
+Kratzer postulates that modality is always relative to a certain kind of interpreting the modalities involved.
+She sets out to formulate these different modalities in a common framework such that we'd only need to specify some parameters of the framework to determine the relevant modalities and give truth conditions for sentences involving modalities, while focusing on epistemic modals.
 
 Kratzer is unhappy with what she calls the \emph{standard analysis} as it gives the wrong verdict in two salient scenarios.
 These are concerned with conflicting rules of law and an a combination of indicative conditionals and modals, respectively.
@@ -214,39 +198,39 @@ More relevantly, the account for modality according to Kratzer needs to include 
   \item Michl might be the murderer.
 \end{enumerate}
 Here, the modalities are listed in decreasing strength, such that the intended reading is that a) implies b), b) implies c), and c) implies d).
-Note that is a qualitative approach to graded modals, as opposed to quantitative approaches, employing a scale structure in the semantics, as described by \textcite{lassiter10_gradab}.
+Note that is a qualitative approach to graded modals, as opposed to quantitative approaches. Some of these employ a scale structure in the semantics, as described by \textcite{lassiter10_gradab}.
 
-\todo{\begin{itemize}[nosep]
-  \item The account presented has a couple of advantages.
-\item Neatly fits with the other modals, just change f and g
-\item Gives an account of probable without resorting to probability functions (give argument by Hamblin - maybe more in philosophy texts? check titelbaum)
-\end{itemize}
-}
+Kratzer intends her account to fit into a common framework for other gradable modals.
+The idea is to just change the parameters $f,g$--to be introduced shortly--to represent the constraints that different modalities impose upon the semantics.
+If successful, this idea would come out in favor of Kratzer's account, since it unifies multiple semantics into a single formal framework.
+In addition, we'd have semantics for epistemic modals and \emph{probable}-talk that do not need to make recourse to probability theory.
+Whether these two features actually do speak in favor of Kratzer's account shall not be evaluated in this paper and are just now mentioned.
+We stick to the criteria defined in the beginning.
+
 How do the semantics look like?
-We assume a set $W$ of possible worlds, a set of propositions $P$ such that elements of $P$ are subsets of $W$, and assume that a proposition $p$ is true at $w$ iff $w \in p$.
-The crucial element in Kratzer's semantics that distinguishes her account from most simple semantics via Kripke frames with an accessibility relation is the \emph{conversational background}.
+We assume a set $W$ of possible worlds, propositions are subsets of $W$, and assume that a proposition $p$ is true at $w$ iff $w \in p$.
+The crucial element in Kratzer's semantics that distinguishes her account from most simple semantics via Kripke frames with only a single accessibility relation is the \emph{conversational background}.
 It has two components.
 
 The \emph{modal base} determines for every world the set of worlds which are epistemically accessible from it.
-More formally, the modal base is a function $f: W \rightarrow \wp(W)$ assigning each world $w$ a set of worlds.
-The set of worlds $f(w)$ assigned to $w$ represents, in the epistemic case, what we know at $w$.
+More formally, the modal base is a function $f: W \rightarrow \wp(W)$ assigning each world $w$ a set of worlds.\footnote{It is not perfectly clear from \textcite[][p.~644]{kratzer91_modal}, but it seems that the modal base in fact assigns a set of propositions to each world, so a set of sets of worlds. This is as far as we can tell equivalent for our purposes to the definition proposed here, if we make slight amendments.}
+The set of worlds $f(w)$ assigned to $w$ is intended to represent what we know at $w$.
 
-The \emph{ordering source} is a function $g: W \rightarrow \wp(W)$ s.t. each $w$ is assigned a set of propositions $g(w)$ which interpreted as an \emph{ideal} (cf. \cite{lewis81_order_seman_premis_seman_count}). The ordering source induces an order $\leq_{g(w)}$ on $W$ for all $w,w' \in W$ as follows:
-\begin{equation}
-    \label{eq:porder}
-w \leq_{g(w)} w' :\iff \{p: p\in g(w) ~\&~ w' \in p\} \subseteq \{p: p\in  g(w) ~\&~ w \in p\}
-\end{equation}
-\todo{THIS NEED UPDATING SINCE g(w) CHANGED!}
+The \emph{ordering source} is a function $g: W \rightarrow \wp(W)$ s.t. each $w$ is assigned a set of propositions $g(w)$ which interpreted as an \emph{ideal} (cf. \cite{lewis81_order_seman_premis_seman_count}). The ordering source induces an ordering $\leq_{g(w)}$ on $W$ for all $w,w' \in W$ as follows:
+% \begin{equation}
+%     \label{eq:porder}
+% w \leq_{g(w)} w' :\iff \{p: p\in g(w) ~\&~ w' \in p\} \subseteq \{p: p\in  g(w) ~\&~ w \in p\}
+% \end{equation}
+% \todo{THIS NEED UPDATING SINCE g(w) CHANGED!}
 \begin{equation}
     \label{eq:porder}
 w \leq_{g(w)} w' :\iff \{A: g(w) \subseteq A ~\&~ w' \in A\} \subseteq \{A: g(w) \subseteq A ~\&~ w \in A\}
 \end{equation}
 The intended reading is that $w$ is at least as close to the ideal represented by $g(w)$ as $w'$ iff all the ideal propositions in $g(w)$ which are true in $w'$ are also true in $w$.
 From this, Kratzer defines a the semantics for a list of different expressions, like `good possibility', `possibility' and so on.
-For our purposes, it suffices to look at those definitions involved in defining the meaning of \emph{probably $\alpha$}.
+For our purposes, it suffices to look at the following ordering on propositions:
 
-First, define `as least as good a possibility as'.
-The induced order on worlds $\leq_{g(w)}$ is `lifted' to an order on the level of propositions.
+The induced ordering on worlds $\leq_{g(w)}$ is `lifted' to an ordering on the level of propositions.
 For a modal base $f$ and a ordering source $g$, for propositions $A,B$ and world $w$, we can define
 \begin{equation}
     \label{eq:lifted}
@@ -255,20 +239,10 @@ For a modal base $f$ and a ordering source $g$, for propositions $A,B$ and world
 where $A_w = f(w) \cap A$, and $B_w$ analogously (cf. \cite[][p.~519]{holliday13_measur}).
 In words, a proposition $A$ is as least as good a possibility as a proposition $B$ seen from a world $w$ iff for any world in $B$ epistemically accessible from $w$ there is a world in $A$ accessible from $w$ that is at least as close to the ideal picked out by $g(w)$.
 
-The strict part is defined as one would expect:
-
-\noindent $A \succ_w B :\iff {A \succeq_w B ~\&~ B \not\succeq_w A}$.  
-
-Finally, we can assign a meaning to \emph{probably $\alpha$} given a set of worlds $W$, a modal base $f$ and a ordering source $g$ \parencite[][p.~645]{kratzer91_modal}:
-\begin{equation}
-\llbracket \text{probably } \alpha \rrbracket^{f,g,w} = 1 :\iff \lb \alpha \rb \succ_w \lb \neg\alpha \rb
-\end{equation}
-Assuming here that we are looking at a flat fragment and $\alpha$ doesn't contain modals itself.
-Intuitively,... \todo{[briefly explain]}
+In the next section, we describe how this ordering can be used to define a semantics for our propositional language.
 
 \subsection{Formal Setup}
 
-To put it slightly more formally, we define: 
 \begin{definition}
     A \emph{Kratzer preferential model} is a tuple $M = \langle W,f,g,V \rangle$ s.t.
     \begin{itemize}[nosep]
@@ -280,15 +254,13 @@ To put it slightly more formally, we define:
 \end{definition}
 
 Further, we want the induced order defined above also hold for $M$.
-This is done in the following uninteresting definition:
-Let $f$ be a modal base, $g$ be a ordering source, $W$ a set of worlds.
-For each $w \in W$ let $\succeq_w$ be the order on subsets of $W$ defined in
-Equation \ref{eq:lifted}.
+This is done via the following rather obvious definition:
 Let $M = \langle W,f,g,V \rangle$ be a Kratzer preferential model.
-For $p,q \subseteq W$ we define an induced order on $\wp(W)$:   
+For each $w \in W$ let $\succeq_w$ be the order on $\wp(W)$ defined in Equation \ref{eq:lifted}.
+For $A,B \subseteq W$ we then define:   
 \begin{equation}
     \label{eq:induced}
-       p \succeq^{M,w} q \text{ iff } p \succeq_w q.
+       A \succeq^{M,w} B \text{ iff } A \succeq_w B.
 \end{equation}
     
 \begin{definition}[Kratzer preferential semantics]
@@ -302,15 +274,13 @@ For $p,q \subseteq W$ we define an induced order on $\wp(W)$:
       \item $\lb \varphi \rb^M = \{w' \in W : M,w' \models \varphi\}$,
       \item $M,w \models \varphi \succeq \psi$ iff $\lb \varphi \rb^M \succeq^{M,w} \lb \psi \rb^M$,
       \item $M,w \models \triangle \varphi$ iff $M,w \models \varphi \succeq \neg \varphi ~\&~ \neg (\neg \varphi \succeq \varphi)$,
-      \item $M,w \models \Diamond \varphi$ iff ...
     \end{enumerate}
 \end{definition}
 
-\todo{FORMALIZE MIGHT PHI}
 \subsection{Discussion}
 
 How does Kratzer's account fare with respect to the adequacy conditions we defined?
-The semantics validate conditions (V1-V7), which can be easily seen by applying the definitions.
+The semantics validate conditions (V1-V5), which can be easily seen by applying the definitions.
 For example, let us establish that Kratzer preferential semantics satisfy (V2), i.e.: 
 \begin{center}
 \begin{prooftree}
@@ -326,10 +296,10 @@ But then $x \in \lb \varphi \rb^M$, too.
 Hence $\lb \varphi \rb^M \succ^{M,w} \lb \neg \varphi \rb^M$ and thus $M,w \models \triangle \varphi$.
 The case for $M,w \models \triangle \psi$ works analogously.
 
-Kratzer's account does \emph{not} validate (V11-V12).
+Kratzer's account does \emph{not} validate (V11-V12). \textcite[pp.~935, note~8]{yalcin10_probab_operat} gives a countermodel.
+In addition, the account \emph{does} validate pattern (I1), as can easily be seen. This is already an unwelcome result. Additionally, (I1) together with (V5) entails (I2) \parencite[p.~922]{yalcin10_probab_operat}. That is, on this account, anything that is as probable as its negation is at least as likely as any tautology. This is, one can argue, a ruinous result.
 
-\todo{THE FOLLOWING IS NOT CORRECT AND NEEDS TO BE REDONE}
-\textcite[pp.~935, note~8]{yalcin10_probab_operat} gives a countermodel. In addition, the account \emph{does} validate pattern (I1), as can easily be seen. This is already an unwelcome result. Additionally, (I1) together with (V5) entails (I2) \parencite[p.~922]{yalcin10_probab_operat}. That is, on this account, anything that is probable is a least as likely as any tautology. This is, of course, a ruinous result.
+Let's have a look at different accounts and see whether they fare better.
 
 \section{Hamblin's Possibility Semantics}
 Already in the 1950's, \textcite{hamblin59_modal_probab} developed a semantics for the \emph{probable}-operator based on what he called plausibility and more recently is referred to as possiblity. Possibility functions are quite similar to probability functions, but do not require finite additivity. They have been used to model an agent's belief state when the focus is on modeling the agent's surprise as well as ignorance towards some proposition. They are useful in modeling vagueness and have the advantage over probability functions that the possibility of the union of two propositions is uniquely determined by the marginal possibilities of the propositions, while probabilities only provide bounds unless the propositions are disjoint \parencite[][p.~45]{halpern03_reason_about_uncer}.
@@ -360,7 +330,7 @@ The account presented here is a reinterpretation based on \textcite{hamblin59_mo
       \item $W$ is a set of possible worlds,
       \item $R$ is a binary relation on $W$,
         \item $V$ is a function $V: \text{Atom} \rightarrow \wp(W)$,
-        \item $\mathcal{F}$ is a function assigning each world $w \in W$ a boolean algebra $\F_w$ on $R(w)$, and 
+        \item $\mathcal{F}$ is a function assigning each world $w \in W$ a boolean algebra $\F_w$ on $R[w]$, and 
           \item $\Po$ is a function assigning each world $w \in W$ a possibility function \\ $p_w: \F_w \rightarrow [0,1]$.
     \end{itemize}
 \end{definition}
@@ -372,15 +342,13 @@ The account presented here is a reinterpretation based on \textcite{hamblin59_mo
   \setcounter{enumi}{4}
       \item $M,w \models \varphi \succeq \psi$ iff $p_w(\lb \varphi \rb^M) \geq p_w(\lb \psi \rb^M) $,
   \setcounter{enumi}{6}
-  \item $M,w \models \Diamond \varphi$ iff there is a $w' \in R(w)$ such that $ M,w' \models \varphi$.
     \end{enumerate}
 \end{definition}
-\noindent Here, we added a the standard semantics for $\Diamond \varphi$, as Yalcin proposes.
 That the model contains a function assigning each world another function might seem formal overkill at first, but is just there such that the possiblity judgments are properly world-relative. When focusing on other aspects and e.g. developing a logic for this semantics, we might simplify our model in this regard, as \textcite{harrison-trainor17_prefer} do with preferential and probability models. 
 
 \subsection{Discussion}
 
-Hamblin's account satisfies (V1-V7), as can easily be seen. For example, let us briefly validate (V2) like for Kratzer's account.
+Hamblin's account satisfies (V1-V5), as can easily be seen. For example, let us briefly validate (V2) like for Kratzer's account.
 Suppose $M,w \models \triangle(\varphi \land \psi)$, hence $p_w(\lb(\varphi \land \psi )\rb^M) > p_w(\lb \neg (\varphi \land \psi) \rb^M)$.
 Because $p_w(\lb (\varphi \land \psi)\rb^M \cup {\lb\neg(\varphi \land \psi)\rb^M)} = 1$, by (2) and (3) of the definition of possibility functions, we have $p_w(\lb (\varphi \land \psi) \rb^M) = 1$.
 If $W$ is finite, there is $w' \in \lb (\varphi \land \psi) \rb^M$ such that $p_w(\{w'\}) = 1$. Since $w'$ is in $\lb \varphi \rb^M$ and $\lb \psi \rb^M$, but there is no $w'' \in \lb \varphi \rb^M\setminus\lb \psi \rb^M$ or $\lb \psi \rb^M\setminus\lb \varphi \rb^M$ with $p_w(\{w''\}) = 1$ we have $p_w(\lb \varphi \rb^M) > p_w(\lb \neg \varphi \rb^M)$ and $p_w(\lb \psi \rb^M) > p_w(\lb \neg \psi \rb^M)$ and hence $M,w \models \triangle \varphi \land \triangle \psi$.
@@ -414,7 +382,7 @@ The following definitions are quite unsurprising, then.
       \item $W$ is a set of possible worlds,
       \item $R$ is a binary relation on $W$,
         \item $V$ is a function $V: \text{Atom} \rightarrow \wp(W)$,
-        \item $\mathcal{F}$ is a function assigning each world $w \in W$ a boolean algebra $\F_w$ on $R(w)$, and 
+        \item $\mathcal{F}$ is a function assigning each world $w \in W$ a boolean algebra $\F_w$ on $R[w]$, and 
           \item $\Pr$ is a function assigning each world $w \in W$ a probability function \\ $\mu_w: \F_w \rightarrow [0,1]$.
     \end{itemize}
 \end{definition}
@@ -426,13 +394,12 @@ The following definitions are quite unsurprising, then.
   \setcounter{enumi}{4}
       \item $M,w \models \varphi \succeq \psi$ iff $\mu_w(\lb \varphi \rb^M) \geq \mu_w(\lb \psi \rb^M) $,
       \item $M,w \models \triangle \varphi$ iff $M,w \models \varphi \succ^{M,w} \neg \varphi$ iff $ \mu_w(\lb \varphi \rb^M) > .5$, and
-  \item $M,w \models \Diamond \varphi$ iff there is a $w' \in R(w)$ such that $ M,w' \models \varphi$.
     \end{enumerate}
 \end{definition}
 
 \subsection{Discussion}
 
-Yalcin promotes his account as satisfying all criteria (V1-V7), (V11-V12), (I1-I3) we defined.
+Yalcin promotes his account as satisfying all criteria (V1-V5), (V11-V12), (I1-I3) we defined.
 Let's look at some of them. 
 To compare, the probability semantics validate V2: Suppose $M,w \models
 \triangle(\varphi \land \psi)$. Then $\mu_w(\lb \varphi \land \psi\rb^M) > .5$.
@@ -464,6 +431,7 @@ They also briefly consider an ordering directly on the set of propositions inste
 They dismiss it, however, because it is more desirable to not have a primitive order on propositions.
 It seems they are themselves doubting this point and merely reiterate an established point.\footnote{This, too, seems worth investigating further.}
 
+Finally, they propose an amendment to Kratzer's preferential semantics, intended to resolve the issues noted by Yalcin and Lassiter. With a seemingly small change on how the ordering is lifted from worlds to propositions, they manage to achieve a host of desired effects. For example, while Kratzer's lifting creates a total ordering on propositions if the order on worlds is total, not so for Holliday and Icard's lifting (cf. \parencite[][p.~525]{holliday13_measur} for a nice extended argument for why this is desirable). We describe the precise change in the next section, and have a look at the results concerning our criteria after that.
 
 \subsection{Formal Setup}
 \begin{definition}
@@ -478,7 +446,7 @@ It seems they are themselves doubting this point and merely reiterate an establi
         (reflexive and transitive binary relation) $\geq^{M,w}$ on $W$. 
     \end{itemize}
 \end{definition}
-Let $R[w] = \{w':wRw'\}$. For any proposition $P \subseteq W$, $P_w := P \cap R[w]$. Further, for two proposition $A,B \subseteq W$ we define
+For any proposition $P \subseteq W$, $P_w := P \cap R[w]$. Further, for two proposition $A,B \subseteq W$ we define
 \begin{multline}
     \label{eq:injection}A \succeq^{M,w} B :\iff \text{ there exists an injective function } f: B_w \rightarrow A_w \\ \text{ such that } f(x) \geq^{M,w} x \text{ for all } x \in B_w.
 \end{multline}
@@ -501,14 +469,22 @@ For a modal base $f$ and a ordering source $g$, for propositions $A,B$ and world
     \label{eq:lifted-star}
     A \succeq_w B :\iff \text{ there exists a function } f: B_w \rightarrow A_w \\ \text{ such that } f(x) \leq_{g(w)} x \text{ for all } x \in B_w.
 \end{multline}
-Compared to Equation \ref{eq:injection}, besides the inverted direction of $\geq$ which is just due to how the notions were defined, the difference is that Holliday and Icard require an injective function assigning each element of $B$ a unique element of $A$ such that the element of $A$ is more plausible, normal etc. This simple change has interesting consequences, as we will see in the next section. 
+Compared to Equation \ref{eq:injection}, besides the inverted direction of $\geq$ which is just due to how the notions were defined, the difference is that Holliday and Icard require an injective function assigning each element of $B$ a unique element of $A$ such that the element of $A$ is more plausible, normal etc.
+This simple change has interesting consequences, as we will see in the next section. 
 \subsection{Discussion}
-\todo{
-  \begin{itemize}
-    \item Write Discussion
-  \end{itemize}
-}
+
+Holliday and Icard promote their account as satisfying all adequacy criteria (V1-V5), (V11-V12), (I1-I3).
+Let's have a closer look.
+First, as an example, the account again satisfies (V2).
+To show this, we can take the argument from Kratzer's semantics, and amend it slightly such that Holliday and Icard's condition (\ref{eq:injection}) is satisfied.  
+We will spare the reader such repetitious reading. 
+
+We can instead employ the model Holliday and Icard provide to construct a countermodel to (I1). Recall that Kratzer's account validated this pattern. We adopt slightly sloppy notation to improve readability.  
+
+Fix a model $M$ and a world $w$. Let $W = \{abcd\}$, ordered by $M$ like so: $a > b > c > d$. Let $A = \{ab\}, B = \{bc\}, C = \{cd\}$. It's easy to see that by (\ref{eq:injection}), we have $A \succ B \succ C$. However, we do not have $A \succ (B \cup C)$, since we can't construct an injection like required. Hence, (I1) is not validated. A clear improvement over Kratzer's semantics.
+
 \section{Conclusion}
+Maybe make an overview table from org mode
 \todo{
   \begin{itemize}
     \item Write Conclusion and further studies
