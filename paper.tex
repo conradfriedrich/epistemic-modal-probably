@@ -96,6 +96,7 @@ In his \parencite*{yalcin10_probab_operat}, Yalcin critically evaluates Kratzer'
 Yalcin does this by following the good philosophical practice of establishing a set of desiderata the accounts can be evaluated against. In the case for judging semantics for a natural language phenomenon, these naturally come in the form of inference patterns that strike one as intuitively valid or invalid.
 The practice is fruitful because it gives criteria to compare different accounts in a transparent and comprehensible fashion, and shifts the focus of the problematic notion of \emph{intuitive plausibility} from judging the accounts themselves to judging the plausibility of the inference patterns.
 Whether some formally specified semantics validates a given inference pattern is then simply not a matter of debate and can be shown mathematically given the assumptions one is forced to make explicit.   
+The rules are not meant to characterize a logic, of course.
 \todo{
 \begin{itemize}[nosep]
   \item Motivate and describe the conditions
@@ -163,7 +164,7 @@ Whether some formally specified semantics validates a given inference pattern is
 
 \begin{center}
 \begin{prooftree}
-    \hypo{ \varphi \succeq \neg \varphi } \infer1[(I2)]{ \varphi \succeq \psi}
+    \hypo{ \varphi \succeq \neg \varphi } \hypo{ \neg \varphi \succeq \varphi}\infer2[(I2)]{ \varphi \succeq \psi}
     \end{prooftree}
 \end{center}
 
@@ -180,6 +181,12 @@ Yalcin and also \textcite{lassiter10_gradab} introduce an additional criterion m
   \item $\varphi$ is twice as likely as $\psi$.
 \end{enumerate}
 Yalcin argues that sentences of this type are ``used and interpreted by speakers who are innocent of the mathematical theory of probability'' \parencite[][p.~923]{yalcin10_probab_operat} and that a semantics for probability operators in natural language must be able to account for them, while Lassiter merely states it as a problem for preferential semantics \parencite[][p.~210]{lassiter10_gradab}. Both share the implicit assumption that both the qualitative talk (`probably $\varphi$') and the quantitative talk like in (2) above need to be accounted for by the same semantics. Given the methodological practice of frequent appeal to intuition to support claims of this sort, the assumption can also be doubted on the same grounds. It is equally plausible that people usually employ different notions of \emph{probable} (or \emph{likely}) in the qualitative and the quantitative case. Qualitative talk is quotidian and ubiquitous, whereas quantitative talk implies the notion of a probability function. It might be the case that speakers use it `innocently' without recourse to probability theory, but it's a different question of whether they do so competently. We argue that they might as well don't. The result is that the criterion does not necessarily help us evaluate adequate semantics for likelihood talk, and thus will be excluded from the present considerations.
+
+Yalcin also discuss criteria concerning the combination of epistemic modals and indicative conditionals (V8-V10, not listed here). While undoubtedly very interesting, also considering semantics for conditionals and integrating those with epistemic modal semantics would be beyond the scope of this short paper.
+
+Also not considered in this paper are more advanced discussions of intuitive validity of \emph{probable}-judgments. One example is a lottery with 1000 possible tickets.
+Suppose Bloggs has 420 tickets, and 580 other players have one ticket each \parencite[p.~931]{yalcin10_probab_operat}. Is the following true or false?
+`Probably, Bloggs is the winner of the lottery'. Although the chance of Bloggs winning is less than him not winning, intuitions here are apparently mixed. Throughout this paper, however, we assume that `probably $\varphi$' is equivalent to `$\varphi$ is more probable than not', ignoring the problematic intuitions just described.
 
 \section{Kratzer's Preferential Semantics}
 \todo{
@@ -320,6 +327,8 @@ Hence $\lb \varphi \rb^M \succ^{M,w} \lb \neg \varphi \rb^M$ and thus $M,w \mode
 The case for $M,w \models \triangle \psi$ works analogously.
 
 Kratzer's account does \emph{not} validate (V11-V12).
+
+\todo{THE FOLLOWING IS NOT CORRECT AND NEEDS TO BE REDONE}
 \textcite[pp.~935, note~8]{yalcin10_probab_operat} gives a countermodel. In addition, the account \emph{does} validate pattern (I1), as can easily be seen. This is already an unwelcome result. Additionally, (I1) together with (V5) entails (I2) \parencite[p.~922]{yalcin10_probab_operat}. That is, on this account, anything that is probable is a least as likely as any tautology. This is, of course, a ruinous result.
 
 \section{Hamblin's Possibility Semantics}
@@ -358,26 +367,37 @@ The account presented here is a reinterpretation based on \textcite{hamblin59_mo
 
 \begin{definition}[Hamblin possiblity semantics]
     \label{def:hambsem}
-    Let $M = \langle M,R,V,\mathcal{F},\Pr \rangle$ be a Hamblin possiblity model, $w \in W$, $\varphi, \psi \in \L$. We define clauses 1-4 just like in Kratzer preferential semantics (Definition \ref{def:kratsem}). We define further:
+    Let $M = \langle M,R,V,\mathcal{F},\Po \rangle$ be a Hamblin possiblity model, $w \in W$, $\varphi, \psi \in \L$. We define clauses 1-4 and 6 just like in Kratzer preferential semantics (Definition \ref{def:kratsem}). We define further:
     \begin{enumerate}[nosep]
-  \setcounter{enumi}{5}
-      \item $M,w \models \varphi \succeq \psi$ iff $p_w(\lb \varphi \rb^M) \geq p_w(\lb \psi \rb^M) $
-      \item $M,w \models \triangle \varphi$ iff $M,w \models \varphi \succ \neg \varphi$ 
+  \setcounter{enumi}{4}
+      \item $M,w \models \varphi \succeq \psi$ iff $p_w(\lb \varphi \rb^M) \geq p_w(\lb \psi \rb^M) $,
+  \setcounter{enumi}{6}
+  \item $M,w \models \Diamond \varphi$ iff there is a $w' \in R(w)$ such that $ M,w' \models \varphi$.
     \end{enumerate}
 \end{definition}
+\noindent Here, we added a the standard semantics for $\Diamond \varphi$, as Yalcin proposes.
+That the model contains a function assigning each world another function might seem formal overkill at first, but is just there such that the possiblity judgments are properly world-relative. When focusing on other aspects and e.g. developing a logic for this semantics, we might simplify our model in this regard, as \textcite{harrison-trainor17_prefer} do with preferential and probability models. 
+
 \subsection{Discussion}
-\todo{
-  \begin{itemize}
-    \item Write Discussion
-  \end{itemize}
-}
+
+Hamblin's account satisfies (V1-V7), as can easily be seen. For example, let us briefly validate (V2) like for Kratzer's account.
+Suppose $M,w \models \triangle(\varphi \land \psi)$, hence $p_w(\lb(\varphi \land \psi )\rb^M) > p_w(\lb \neg (\varphi \land \psi) \rb^M)$.
+Because $p_w(\lb (\varphi \land \psi)\rb^M \cup {\lb\neg(\varphi \land \psi)\rb^M)} = 1$, by (2) and (3) of the definition of possibility functions, we have $p_w(\lb (\varphi \land \psi) \rb^M) = 1$.
+If $W$ is finite, there is $w' \in \lb (\varphi \land \psi) \rb^M$ such that $p_w(\{w'\}) = 1$. Since $w'$ is in $\lb \varphi \rb^M$ and $\lb \psi \rb^M$, but there is no $w'' \in \lb \varphi \rb^M\setminus\lb \psi \rb^M$ or $\lb \psi \rb^M\setminus\lb \varphi \rb^M$ with $p_w(\{w''\}) = 1$ we have $p_w(\lb \varphi \rb^M) > p_w(\lb \neg \varphi \rb^M)$ and $p_w(\lb \psi \rb^M) > p_w(\lb \neg \psi \rb^M)$ and hence $M,w \models \triangle \varphi \land \triangle \psi$.
+
+Further, Hamblin validates pattern (V11-V12) \parencite[][p.~926]{yalcin10_probab_operat}.
+Like Kratzer, though, Hamblin also validates (I1) and (I2), but more egregiously, even (I3): 
+\begin{center}
+\begin{prooftree}
+    \hypo{ \triangle \varphi } \infer1[(I3)]{ \varphi \succeq \psi}
+    \end{prooftree}
+\end{center}
+To see this, note the fact we made use of above already: If $M,w \models \triangle \varphi$, then because $\lb \varphi \rb^M \cup \lb \neg \varphi \rb^M = W$, we have by (2) and (3) of the definition of possibility functions that $p_w(\lb \varphi \rb^M) = 1$ such that $M,w \models \varphi \succeq \psi$ for any $\psi \in \L$. This clearly runs counter to the idea of modeling the graded epistemic modal \emph{probable} in natural language. For other uses as in fuzzy logic \parencite[][p.~43]{halpern03_reason_about_uncer} this does of course say nothing.
 \section{Yalcin's Probability Semantics}
 
-\todo{
-  \begin{itemize}
-    \item Write Introduction
-  \end{itemize}
-}
+Unsatisfied with the accounts described so far, Yalcin proposes to overcome the wariness towards probability functions as semantics for probability talk.
+The semantics developed by \textcite{yalcin10_probab_operat} and very similarly by \textcite{lassiter10_gradab} is the absolutely straightforward application of probability measures towards our present problem, so obvious in fact that it strikes me as noteworthy that these seem to be among the earliest applications of probability functions to \emph{probable}-talk, as both Yalcin and Lassiter claim.
+The following definitions are quite unsurprising, then.
 \subsection{Formal Setup}
 
 \noindent Let $\F$ be a boolean algebra. A probability function is a function $\mu: \F \rightarrow [0,1]$ such that
@@ -401,26 +421,50 @@ The account presented here is a reinterpretation based on \textcite{hamblin59_mo
 
 \begin{definition}[Yalcin probability semantics]
     \label{def:yalcsem}
-    Let $M = \langle M,R,V,\mathcal{F},\Pr \rangle$ be a Yalcin probability model, $w \in W$, $\varphi, \psi \in \L$. We define clauses 1-3 just like in Kratzer preferential models (Definition \ref{def:kratsem}). We define further:
+    Let $M = \langle M,R,V,\mathcal{F},\Pr \rangle$ be a Yalcin probability model, $w \in W$, $\varphi, \psi \in \L$. We define clauses 1-4 just like in Kratzer preferential models (Definition \ref{def:kratsem}). We define further:
     \begin{enumerate}[nosep]
   \setcounter{enumi}{4}
-      \item $M,w \models \varphi \succeq \psi$ iff $\mu_w(\lb \varphi \rb^M) \geq \mu_w(\lb \psi \rb^M) $
-      \item $M,w \models \triangle \varphi$ iff $M,w \models \varphi \succ^{M,w} \neg \varphi$ iff $ \mu_w(\lb \varphi \rb^M) > .5$
+      \item $M,w \models \varphi \succeq \psi$ iff $\mu_w(\lb \varphi \rb^M) \geq \mu_w(\lb \psi \rb^M) $,
+      \item $M,w \models \triangle \varphi$ iff $M,w \models \varphi \succ^{M,w} \neg \varphi$ iff $ \mu_w(\lb \varphi \rb^M) > .5$, and
+  \item $M,w \models \Diamond \varphi$ iff there is a $w' \in R(w)$ such that $ M,w' \models \varphi$.
     \end{enumerate}
 \end{definition}
 
 \subsection{Discussion}
-\todo{
-  \begin{itemize}
-    \item Write Discussion
-  \end{itemize}
-}
+
+Yalcin promotes his account as satisfying all criteria (V1-V7), (V11-V12), (I1-I3) we defined.
+Let's look at some of them. 
+To compare, the probability semantics validate V2: Suppose $M,w \models
+\triangle(\varphi \land \psi)$. Then $\mu_w(\lb \varphi \land \psi\rb^M) > .5$.
+Since marginal probabilities are bounded from below by joint probabilities of
+the same variable, we have $\mu_w(\lb \varphi \rb^M) > .5$ and hence $M,w
+\models \triangle \varphi$. The case for $\psi$ is analogous.
+The semantics satisfy (I1) by invalidating the pattern.
+\begin{center}
+\begin{prooftree}
+    \hypo{ \varphi \succeq \psi } \hypo{\varphi \succeq \chi}\infer2[(I1)]{ \varphi \succeq (\psi \lor \chi)}
+    \end{prooftree}
+\end{center}
+
+\noindent To see this, fix a model $M$ and a world $w \in W$ (sub- and superscripts suppressed).
+Let $\mu(\lb\varphi\rb) = .6;~ \lb\psi\rb \cap \lb\chi\rb=\emptyset;~ \mu(\lb\psi\rb) = \mu(\lb\chi\rb) = .4$. (that such a model exists can be easily verified).
+Then $\mu(\lb \psi \rb \cup \lb \chi \rb) = .8$.
+Thus $M,w \models \varphi \succeq \psi$ and $ M,w \models \varphi \succeq \chi$ but $M,w \not\models \varphi \succeq (\psi \lor \chi)$.
+
+Given our criteria, then, the probabilistic model is the clear winner.
+Does this
+mean preferential accounts in general are inapt to model the
+\emph{probable}-talk semantics?
+Not quite, as we will see in the next section.
+
 \section{Holliday and Icard's Preferential Semantics}
-\todo{
-  \begin{itemize}
-    \item Write Introduction
-  \end{itemize}
-}
+
+\textcite{holliday13_measur} are not yet ready to accept defeat for the preferentialist. First, they set out to generalize Yalcin's account and replace probability functions with so called qualitatively additive measures \parencite[][p.~522]{holliday13_measur}, which they show to also be adequate with respect to our criteria.\footnote{It is noteworthy that they describe (I2) as `If $\varphi \succeq \neg \varphi$ then $\varphi \succeq \psi$', instead of the present version (see above), since the resulting claims are different. It could be worthwile to investigate further where this discrepancy is coming from.}
+They also briefly consider an ordering directly on the set of propositions instead of inducing the order from an order on worlds, and state that here, one can quite straightforwardly constrain the ordering such that it provides a semantic to satisfy the adequacy criteria \parencite[p.~924]{holliday13_measur}.
+They dismiss it, however, because it is more desirable to not have a primitive order on propositions.
+It seems they are themselves doubting this point and merely reiterate an established point.\footnote{This, too, seems worth investigating further.}
+
+
 \subsection{Formal Setup}
 \begin{definition}
     A Holliday and Icard preferential model is a tuple $M = {\langle
@@ -471,6 +515,7 @@ Compared to Equation \ref{eq:injection}, besides the inverted direction of $\geq
   \end{itemize}
 }
 What about the $\epsilon$-semantics (Adams, Pearl)? 
+
 \nocite{hamblin59_modal_probab,holliday13_measur,harrison-trainor17_prefer,kratzer91_modal,lassiter10_gradab,yalcin10_probab_operat,kratzer98_seman}
  \printbibliography
 \end{document}
