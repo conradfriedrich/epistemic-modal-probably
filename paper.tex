@@ -47,65 +47,72 @@ ibidtracker=context,natbib,doi=false,isbn=false,url=false]{biblatex-chicago}
 
 \begin{document}
 
-\onehalfspacing
+% \onehalfspacing
 
 \maketitle
 
 \tableofcontents
+\newpage
 \section{Introduction}
 
 What do we mean when we say something like `It is likely going to rain' or `I probably left my car keys at home'?
-This paper studies formal accounts which provide a semantical analysis of epistemic modals like \emph{likely} and \emph{probable}.
+This paper studies formal accounts which provide a semantical analysis of epistemic modals such as \emph{likely} and \emph{probable}.
 Towards this goal, we survey the literature in philosophy and formal semantics proposing and evaluating such accounts.
-By establishing a list of criteria such an account should fulfill, we give a comprehensible and readily criticizable evaluation of the accounts. To make things easier to compare, we provide a common propositional language and define the semantics of the different accounts directly for this language. Thus the purpose of this paper is to make the accounts as transparently comparable as possible, and then evaluate them according to a set of specification.
+By establishing a list of criteria, we give a comprehensible and readily criticizable evaluation of the accounts. To make things easier to compare, we provide a common propositional language and define the semantics of the different accounts directly for this language. Thus the purpose of this paper is to make the accounts as transparently comparable as possible, and then evaluate them according to a set of specification.
 
-The literature provides a natural classification into qualitative and quantitative accounts of analyzing \emph{probable}-talk. We will see that both types of accounts provide adequate analysis according to the criteria we introduce.
+The literature provides a natural classification into qualitative and quantitative analyses of \emph{probable}-talk.
+We will see that both types are adequate according to the criteria we establish.
 
-In order to introduce the topic, we introduce Kratzer's semantics a bit more extensively than in the subsequent presentations.
+In order to introduce the topic, we present Kratzer's semantics a bit more extensively than in the subsequent presentations.
 
-The paper is structured as follows. First, we'll briefly introduce \emph{probable} in the context of epistemic modals. Then we will establish a set of criteria which a semantic theory for \emph{probable} should satisfy. We will discuss why these criteria and which additional criteria we decided to or had to leave out of this paper. In the subsequent sections, we will present and critically evaluate four different accounts for epistemic modals. Two of these are qualitative, two are quantitative in nature. For each of the accounts, we will first introduce the formal structure in some detail and then discuss the account according to our established criteria. We mostly follow \textcite{yalcin10_probab_operat} and \textcite{holliday13_measur} in our exposition.
+The paper is structured as follows. First, we'll briefly introduce \emph{probable} in the context of epistemic modals. Then we will establish a set of criteria which a semantic theory for \emph{probable} should satisfy. We will discuss why these criteria are apt and which additional criteria we had to leave out of this paper. In the subsequent sections, we will present and critically evaluate four different accounts. Two of these are qualitative; two are quantitative in nature. For each, we will first introduce the formal structure in some detail and then discuss the account according to our established criteria. We mostly follow \textcite{yalcin10_probab_operat} and \textcite{holliday13_measur} in our exposition.
 
 \subsection{Type Theory and Intensional Semantics}
 A quick word regarding the connection to type theory. In this paper, we will not be concerned with type theoretical considerations. It seems that also in the relevant literature authors are not very keen on discussing the connection. One reason might be that it is rather straightforward and uninteresting: here, we just view the \emph{probable}-operator as an operator on sentences, such that we merely add something along the lines of `if $\varphi:t$ then $\triangle \varphi:t$' to our type theory. The interesting developments for the purposes of this paper take place when we enrich the model for our calculus. As a further simplification, we will only be concerned with a simple propositional language instead of a first order one.
 
-\section{The Epistemic Modal \emph{probable}}
+\subsection{Epistemic Modals}
+
+In this subsection, we briefly introduce epistemic modals and the propositional language we are going to study \emph{probable}-talk in.
+
 Epistemic modals are ubiquitous in everyday conversation.
 It is not entirely obvious, however, what exactly one expresses when exclaiming, e.g. `John can't be running!' after seeing his shoes not on the hook they are usually hanging.
 \textcite{macfarlane11_are_asses_sensit} offers the interpretation that these claims have to do with the speakers knowledge and what is compatible with it.
 `John can't be running' does not express a metaphysical impossibility, rather, it is incompatible with what the speaker knows or believes.
 This is what we'll adopt here, too.
-There are a host of interesting philosophical and linguistic problems associated with uttering sentences involving epistemic modals (cf. \cite{yalcin07_epist_modal}), which will mostly not be the focus of this paper.
-Rather, we will concern ourselves with analyzing \emph{probable}.
-The epistemic modal \emph{probable} is more nuanced and is subject to grading:
+There are a host of interesting philosophical and linguistic issues associated with uttering sentences involving epistemic modals (cf. \cite{yalcin07_epist_modal}), which will mostly not be the focus of this paper.
+Rather, we will concern ourselves with analyzing the modal \emph{probable}, which is more nuanced and subject to grading:
 something can reasonably be judged more or less probable. It comes in comparative (e.g. `$\varphi$ is at least as likely as $\psi$') and absolute (e.g. `probably $\varphi$') flavor.
 Throughout this paper, we will assume that both types are closely related: absolute \emph{probable}-talk is just comparative \emph{probable}-talk `in disguise'.
 
 
-To base the following discussions on a common language, we define a propositional language $\L$ (cf. \cite{harrison-trainor17_prefer}):
+To base the following discussions across different accounts on a common language, we define a propositional language $\L$ (cf. \cite{harrison-trainor17_prefer}):
 \[
-\varphi ::= p ~|~ \neg \varphi ~|~ (\varphi \land \psi) ~|~  (\varphi \succeq \psi) ~|~ \triangle\varphi 
+\varphi ::= p ~|~ \neg \varphi ~|~ (\varphi \land \varphi) ~|~  (\varphi \succeq \varphi) ~|~ \triangle\varphi 
 \]
-Where $p$ is an atomic formula, i.e. $p \in \text{Atom}$. The other boolean connectives $(\varphi \rightarrow \psi), (\varphi \vee
-\psi)$ as well as $\top, \bot$ are defined in the standard way from negation and conjunction.
+Where $p$ is an atomic formula, i.e. $p \in \texttt{Atom}$. The other boolean connectives $\rightarrow, \vee$ as well as $\top, \bot$ are defined in the standard way from negation and conjunction.
 The intended readings are as follows:
 \begin{align*}
   \varphi \succeq \psi &: \varphi \text{ is at least as likely as } \psi. \\
   \triangle \varphi &:\text{probably } \varphi. \\ 
 \end{align*}
 
-\subsection{Criteria for Adequacy}
+\section{Adequacy Criteria}
+In this section, we discuss criteria for an adequate analysis of \emph{probable}-talk we are employing in this paper, and survey additional criteria we did not include in the evaluation.
+
 In his \parencite*{yalcin10_probab_operat}, Yalcin critically evaluates Kratzer's relative likelihood account and also Hamblin's account, which is based on the notion of possiblity (resp. plausiblity) functions \parencite{hamblin59_modal_probab}.
-Yalcin does this by following the good philosophical practice of establishing a set of desiderata the accounts can be evaluated against. In the case for judging semantics for a natural language phenomenon, these naturally come in the form of inference patterns that strike one as intuitively valid or invalid.
+Yalcin does this by following the good philosophical practice of establishing a set of desiderata the accounts can be evaluated against. In the case for judging semantics for a natural language phenomenon, these naturally come in the form of inference patterns that strike one as intuitively valid or not.
 The practice is fruitful because it gives criteria to compare different accounts in a transparent and comprehensible fashion, and shifts the focus of the problematic notion of \emph{intuitive plausibility} from judging the accounts themselves to judging the plausibility of the inference patterns.
-Whether some formally specified semantics validates a given inference pattern is then simply not a matter of debate and can be shown mathematically given the assumptions one is forced to make explicit.   
-The rules are not meant to characterize a logic, of course. Let us briefly go through all criteria we evaluate the accounts by in this paper.
-The criteria are stated in the form of inference patterns. The inferences here can just be understood as classical truth preservation.
+Whether some formally specified semantics validates a given inference pattern is then simply not a matter of debate and can be shown mathematically, given the assumptions one is forced to make explicit.   
+The rules are not meant to characterize a logic, of course. In this paper, we are not concerned with proving theorems about a logic at all.
+
+Let us briefly go through all criteria we evaluate the accounts by in this paper.
+The criteria are stated in the form of inference patterns.
+The inferences here can just be understood as classical truth preservation.
 
 We follow \textcite{yalcin10_probab_operat} quite closely in the rest of this subsection. 
 
-What do we mean by \emph{valid} in the following? We refer here to intuitively reasonable inference patterns. We ascribe a competent speaker of English to agree in validating or rejecting a pattern.
+What do we mean by \emph{valid} in the following? We refer here to intuitively reasonable inference patterns. We assume a competent speaker of English to agree in validating or rejecting a pattern.
 
-Patterns (V1-V5) are clearly valid:
 Intuitively, it's clear that not both a proposition and its negation should be considered probable, expressed in (V1).
 (V2) claims that if a conjunction is probable, both of its conjuncts must be, too.
 Since a disjunction shouldn't be less probable than either of its disjuncts, (V3) also is intuitively valid.
@@ -155,7 +162,7 @@ Since a disjunction shouldn't be less probable than either of its disjuncts, (V3
     \end{prooftree}
 \end{center}
 
-\noindent The concluding three patterns are intuitively invalid. Yalcin offers the following counterexample to (I1) when throwing a coin, which is clearly problematic.
+\noindent The concluding three patterns are intuitively \emph{invalid}. Yalcin offers the following counterexample to (I1) when throwing a coin, which is clearly problematic.
 \begin{quote}
    Heads is at least as likely as tails. Heads is at least as likely as heads. So, heads is at least as likely as heads or tails. 
 \end{quote}
@@ -166,7 +173,7 @@ Since a disjunction shouldn't be less probable than either of its disjuncts, (V3
     \end{prooftree}
 \end{center}
 
-(I2) and (I3) are even more obviously undesirable. But some semantics, as we will see, still validate these patterns.
+\noindent (I2) and (I3) are even more obviously undesirable. But some semantics, as we will see, still validate these patterns.
 
 \begin{center}
 \begin{prooftree}
@@ -186,9 +193,10 @@ Yalcin and also \textcite{lassiter10_gradab} introduce an additional criterion m
   \item There is a 60\% probability that it is raining.
   \item $\varphi$ is twice as likely as $\psi$.
 \end{enumerate}
-Yalcin argues that sentences of this type are ``used and interpreted by speakers who are innocent of the mathematical theory of probability'' \parencite[][p.~923]{yalcin10_probab_operat} and that a semantics for probability operators in natural language must be able to account for them, while Lassiter merely states it as a problem for preferential semantics \parencite[][p.~210]{lassiter10_gradab}. Both share the implicit assumption that both the qualitative talk (`probably $\varphi$') and the quantitative talk like in (2) above need to be accounted for by the same semantics. Given the methodological practice of frequent appeal to intuition to support claims of this sort, the assumption can also be doubted on the same grounds. It is equally plausible that people usually employ different notions of \emph{probable} (or \emph{likely}) in the qualitative and the quantitative case. Qualitative talk is quotidian and ubiquitous, whereas quantitative talk implies the notion of a probability function. It might be the case that speakers use it `innocently' without recourse to probability theory, but it's a different question of whether they do so competently. We argue that they might as well don't. The result is that the criterion does not necessarily help us evaluate adequate semantics for likelihood talk, and thus will be excluded from the present considerations.
+Yalcin argues that sentences of this type are ``used and interpreted by speakers who are innocent of the mathematical theory of probability'' \parencite[][p.~923]{yalcin10_probab_operat} and that a semantics for probability operators in natural language must be able to account for them, while Lassiter merely states it as a problem for preferential semantics \parencite[][p.~210]{lassiter10_gradab}. Both share the implicit assumption that both the qualitative talk (`probably $\varphi$') and the quantitative talk like in (2) above need to be accounted for by the same semantics. Given the methodological practice of frequent appeal to intuition to support claims of this sort, the assumption can also be doubted on the same grounds. It is equally plausible that people usually employ different notions of \emph{probable} (or \emph{likely}) in the qualitative and the quantitative case. Qualitative talk is quotidian and ubiquitous, whereas quantitative talk implies the notion of a probability function. It might be the case that speakers use it `innocently' without recourse to probability theory, but it's a different question of whether they do so competently. We argue that they might as well not.
+The result is that the criterion does not necessarily help us evaluate adequate semantics for likelihood talk, and thus will be excluded from the present considerations.
 
-Yalcin also discuss criteria concerning the combination of epistemic modals and indicative conditionals (V8-V10, not listed here). While undoubtedly very interesting, also considering semantics for conditionals and integrating those with epistemic modal semantics would be beyond the scope of this short paper.
+Yalcin also discusses criteria concerning the combination of epistemic modals and indicative conditionals (V8-V10, not listed here). While undoubtedly very interesting, also considering semantics for conditionals and integrating those with epistemic modal semantics would go beyond the scope of this short paper.
 
 Also not considered in this paper are more advanced discussions of intuitive validity of \emph{probable}-judgments. One example is a lottery with 1000 possible tickets.
 Suppose Bloggs has 420 tickets, and 580 other players have one ticket each \parencite[p.~931]{yalcin10_probab_operat}. Is the following true or false?
@@ -203,14 +211,14 @@ These can be epistemic (e.g. `Jockl must have been the murderer [in view of the 
 Further, there are teleological (in view of certain aims), bouletic (in view of certain wishes), and doxastic (in view of certain beliefs) modalities.
 This list is by no means complete.
 
-Kratzer postulates that modality is always relative to a certain kind of interpreting the modalities involved.
-She sets out to formulate these different modalities in a common framework such that we'd only need to specify some parameters of the framework to determine the relevant modalities and give truth conditions for sentences involving modalities, while focusing on epistemic modals.
+Kratzer postulates that modality is always relative to a certain kind of interpretation of the modalities involved.
+She sets out to formulate these different modalities in a common framework such that we'd only need to specify some parameters of the framework to determine the relevant modalities and to give truth conditions for sentences involving modalities.
 
 Kratzer is unhappy with what she calls the \emph{standard analysis} as it gives the wrong verdict in two salient scenarios.
-These are concerned with conflicting rules of law and an a combination of indicative conditionals and modals, respectively.
+These are concerned with conflicting rules of law and a combination of indicative conditionals and modals, respectively.
 We will not reiterate these scenarios here, but--spoiler alert--Kratzer's theory manages to do them justice.
 
-More relevantly, the account for modality according to Kratzer needs to include graded modalities, of the following sort:
+More relevantly, an account for modality according to Kratzer needs to include graded modalities, of the following sort:
 \begin{enumerate}[nosep,label=\alph*)]
   \item Michl must be the murderer.
   \item Michl is probably the murderer.
@@ -218,18 +226,17 @@ More relevantly, the account for modality according to Kratzer needs to include 
   \item Michl might be the murderer.
 \end{enumerate}
 Here, the modalities are listed in decreasing strength, such that the intended reading is that a) implies b), b) implies c), and c) implies d).
-Note that is a qualitative approach to graded modals, as opposed to quantitative approaches. Some of these employ a scale structure in the semantics, as described by \textcite{lassiter10_gradab}.
 
 Kratzer intends her account to fit into a common framework for other gradable modals.
 The idea is to just change the parameters $f,g$--to be introduced shortly--to represent the constraints that different modalities impose upon the semantics.
 If successful, this idea would come out in favor of Kratzer's account, since it unifies multiple semantics into a single formal framework.
 In addition, we'd have semantics for epistemic modals and \emph{probable}-talk that do not need to make recourse to probability theory.
-Whether these two features actually do speak in favor of Kratzer's account shall not be evaluated in this paper and are just now mentioned.
+Whether these two features actually do speak in favor of Kratzer's account shall not be evaluated in this paper and are now just mentioned.
 We stick to the criteria defined in the beginning.
 
 How do the semantics look like?
-We assume a set $W$ of possible worlds, propositions are subsets of $W$, and assume that a proposition $p$ is true at $w$ iff $w \in p$.
-The crucial element in Kratzer's semantics that distinguishes her account from most simple semantics via Kripke frames with only a single accessibility relation is the \emph{conversational background}.
+We assume a set $W$ of possible worlds, propositions are subsets of $W$, and assume that a proposition $A$ is true at $w$ iff $w \in A$.
+The crucial element in Kratzer's semantics that distinguishes her account from the \emph{standard analysis} is the \emph{conversational background}.
 It has two components.
 
 The \emph{modal base} determines for every world the set of worlds which are epistemically accessible from it.
@@ -248,10 +255,10 @@ w \leq_{g(w)} w' :\iff \{A: g(w) \subseteq A ~\&~ w' \in A\} \subseteq \{A: g(w)
 \end{equation}
 The intended reading is that $w$ is at least as close to the ideal represented by $g(w)$ as $w'$ iff all the ideal propositions in $g(w)$ which are true in $w'$ are also true in $w$.
 From this, Kratzer defines a the semantics for a list of different expressions, like `good possibility', `possibility' and so on.
-For our purposes, it suffices to look at the following ordering on propositions:
+For our purposes, it suffices to look at the following ordering on propositions.
 
 The induced ordering on worlds $\leq_{g(w)}$ is `lifted' to an ordering on the level of propositions.
-For a modal base $f$ and a ordering source $g$, for propositions $A,B$ and world $w$, we can define
+For a modal base $f$ and an ordering source $g$, for propositions $A,B$ and world $w$, we can define
 \begin{equation}
     \label{eq:lifted}
     A \succeq_w B :\iff \forall b \in B_w \exists a \in A_w: a \leq_{g(w)} b,
@@ -267,9 +274,9 @@ In the next section, we describe how this ordering can be used to define a seman
     A \emph{Kratzer preferential model} is a tuple $M = \langle W,f,g,V \rangle$ s.t.
     \begin{itemize}[nosep]
 \renewcommand\labelitemi{--}
-      \item $W$ is a non-empty set of possible worlds,
+      \item $W$ is a finite, non-empty set of possible worlds,
       \item $f,g$ are functions $f,g: W \rightarrow \wp(W)$,
-      \item $V$ is a function $V: \text{Atom} \rightarrow \wp(W)$
+      \item $V$ is a function $V: \texttt{Atom} \rightarrow \wp(W)$
     \end{itemize}
 \end{definition}
 
@@ -288,7 +295,7 @@ For $A,B \subseteq W$ we then define:
     Let $M = \langle M,f,g,V \rangle$ be a Kratzer preferential model, $w \in W$, $\varphi, \psi \in \L$ and let $\succeq^{M,w}$ be the induced order on $\wp(W)$ by Equation \ref{eq:induced}. We define 
     
     \begin{enumerate}[nosep]
-      \item If $p \in \text{Atom}$, $M,w \models p$ iff $w \in V(p)$,
+      \item If $p \in \texttt{Atom}$, $M,w \models p$ iff $w \in V(p)$,
       \item $M,w \models \neg \varphi$ iff $M,w \not\models \varphi$
       \item $M,w \models (\varphi \land \psi)$ iff $M,w \models \varphi$ and $M,w \models \psi$,
       \item $\lb \varphi \rb^M = \{w' \in W : M,w' \models \varphi\}$,
@@ -316,13 +323,13 @@ But then $x \in \lb \varphi \rb^M$, too.
 Hence $\lb \varphi \rb^M \succ^{M,w} \lb \neg \varphi \rb^M$ and thus $M,w \models \triangle \varphi$.
 The case for $M,w \models \triangle \psi$ works analogously.
 
-Kratzer's account does \emph{not} validate (V11-V12). \textcite[pp.~935, note~8]{yalcin10_probab_operat} gives a countermodel.
+Kratzer's account does \emph{not} validate (V11-V12). \textcite[pp.~935, note~8]{yalcin10_probab_operat} gives a countermodel.\footnote{Which, however, requires an infinite $W$. We need to further look into this.}
 In addition, the account \emph{does} validate pattern (I1), as can easily be seen. This is already an unwelcome result. Additionally, (I1) together with (V5) entails (I2) \parencite[p.~922]{yalcin10_probab_operat}. That is, on this account, anything that is as probable as its negation is at least as likely as any tautology. This is, one can argue, a ruinous result.
 
 Let's have a look at different accounts and see whether they fare better.
 
 \section{Hamblin's Possibility Semantics}
-Already in the 1950's, \textcite{hamblin59_modal_probab} developed a semantics for the \emph{probable}-operator based on what he called plausibility and more recently is referred to as possiblity. Possibility functions are quite similar to probability functions, but do not require finite additivity. They have been used to model an agent's belief state when the focus is on modeling the agent's surprise as well as ignorance towards some proposition. They are useful in modeling vagueness and have the advantage over probability functions that the possibility of the union of two propositions is uniquely determined by the marginal possibilities of the propositions, while probabilities only provide bounds unless the propositions are disjoint \parencite[][p.~45]{halpern03_reason_about_uncer}.
+Already in the 1950's, \textcite{hamblin59_modal_probab} developed a semantics for the \emph{probable}-operator based on what he called \emph{plausibility} and more recently is referred to as \emph{possiblity}. Possibility functions are quite similar to probability functions, but do not require finite additivity. They have been used to model an agent's belief state when the focus is on modeling the agent's surprise as well as ignorance towards some proposition. They are useful in modeling vagueness and have the advantage over probability functions that the possibility of the union of two propositions is uniquely determined by the marginal possibilities of the propositions, while probabilities only provide bounds unless the propositions are disjoint \parencite[][p.~45]{halpern03_reason_about_uncer}.
 
 Why should possibilities be particularly appropriate in semantics? Hamblin does not present a clear argument, but refers to that the weighing of reasons is captured better in possibilities than in probabilities \parencite[][p.~240]{hamblin59_modal_probab}.
 Yalcin gives his interpretation of Hamblin as that probabilities are too idealized, and possibilities provide a less restricted formal structure and are thus more appropriate to model everyday likelihood talk.
@@ -330,14 +337,14 @@ In any case, let us look at the formal setup and evaluate whether Hamblin's acco
 The account presented here is a reinterpretation based on \textcite{hamblin59_modal_probab}, \textcite[][pp.~42]{halpern03_reason_about_uncer} and \textcite{yalcin10_probab_operat} to fit the account into contemporary semantics.
 
 \subsection{Formal Setup}
-\noindent Let $W$ be a set. A boolean algebra on $W$ is a set $\F \subseteq \wp(W)$ such that
+\noindent Let $W$ be a set. A \emph{boolean algebra} on $W$ is a set $\F \subseteq \wp(W)$ such that
 \begin{enumerate}[nosep]
   \item $\emptyset, W \in \F$,
   \item $A \in \F \Rightarrow \bar{A} \in \F$, and
   \item $A,B \in \F \Rightarrow A \cup B \in \F$.
 \end{enumerate}
 
-\noindent Let $\F$ be a boolean algebra. A possibility function is a function $p: \F \rightarrow [0,1]$ such that
+\noindent Let $\F$ be a boolean algebra. A \emph{possibility function} is a function $p: \F \rightarrow [0,1]$ such that
 \begin{enumerate}[nosep]
   \item $p(\emptyset) = 0$,
   \item $p(W) = 1$, and
@@ -347,9 +354,9 @@ The account presented here is a reinterpretation based on \textcite{hamblin59_mo
     A \emph{Hamblin possibility model} is a tuple $M = \langle W,R,V,\mathcal{F},\Po\rangle$ such that
     \begin{itemize}[nosep]
         \renewcommand\labelitemi{--}
-      \item $W$ is a set of possible worlds,
+      \item $W$ is a finite, non-empty set of possible worlds,
       \item $R$ is a binary relation on $W$,
-        \item $V$ is a function $V: \text{Atom} \rightarrow \wp(W)$,
+        \item $V$ is a function $V: \texttt{Atom} \rightarrow \wp(W)$,
         \item $\mathcal{F}$ is a function assigning each world $w \in W$ a boolean algebra $\F_w$ on $R[w]$, and 
           \item $\Po$ is a function assigning each world $w \in W$ a possibility function \\ $p_w: \F_w \rightarrow [0,1]$.
     \end{itemize}
@@ -374,7 +381,7 @@ Because $p_w(\lb (\varphi \land \psi)\rb^M \cup {\lb\neg(\varphi \land \psi)\rb^
 If $W$ is finite, there is $w' \in \lb (\varphi \land \psi) \rb^M$ such that $p_w(\{w'\}) = 1$. Since $w'$ is in $\lb \varphi \rb^M$ and $\lb \psi \rb^M$, but there is no $w'' \in \lb \varphi \rb^M\setminus\lb \psi \rb^M$ or $\lb \psi \rb^M\setminus\lb \varphi \rb^M$ with $p_w(\{w''\}) = 1$ we have $p_w(\lb \varphi \rb^M) > p_w(\lb \neg \varphi \rb^M)$ and $p_w(\lb \psi \rb^M) > p_w(\lb \neg \psi \rb^M)$ and hence $M,w \models \triangle \varphi \land \triangle \psi$.
 
 Further, Hamblin validates pattern (V11-V12) \parencite[][p.~926]{yalcin10_probab_operat}.
-Like Kratzer, though, Hamblin also validates (I1) and (I2), but more egregiously, even (I3): 
+Like Kratzer, though, Hamblin also validates (I1) and (I2), but more glaringly even (I3): 
 \begin{center}
 \begin{prooftree}
     \hypo{ \triangle \varphi } \infer1[(I3)]{ \varphi \succeq \psi}
@@ -384,7 +391,7 @@ To see this, note the fact we made use of above already: If $M,w \models \triang
 \section{Yalcin's Probability Semantics}
 
 Unsatisfied with the accounts described so far, Yalcin proposes to overcome the wariness towards probability functions as semantics for probability talk.
-The semantics developed by \textcite{yalcin10_probab_operat} and very similarly by \textcite{lassiter10_gradab} is the absolutely straightforward application of probability measures towards our present problem, so obvious in fact that it strikes me as noteworthy that these seem to be among the earliest applications of probability functions to \emph{probable}-talk, as both Yalcin and Lassiter claim.
+The semantics developed by \textcite{yalcin10_probab_operat} and very similarly by \textcite{lassiter10_gradab} is the straightforward application of probability measures towards our present problem, so obvious in fact that it strikes me as noteworthy that these seem to be among the earliest applications of probability functions to \emph{probable}-talk, as both Yalcin and Lassiter claim.
 The following definitions are quite unsurprising, then.
 \subsection{Formal Setup}
 
@@ -392,16 +399,16 @@ The following definitions are quite unsurprising, then.
 \begin{enumerate}[nosep]
   \item $\mu(\emptyset) = 0$ 
   \item $\mu(W) = 1$
-  \item $\mu(U \cup V) = \mu(U) + \mu(V) \text{ if } U \cup V = \emptyset $
+  \item $\mu(U \cup V) = \mu(U) + \mu(V) \text{ if } U \cap V = \emptyset $
 \end{enumerate}
 
 \begin{definition}
     A \emph{Yalcin probability model} is a tuple $M = \langle W,R,V,\mathcal{F},\Pr\rangle$ such that
     \begin{itemize}[nosep]
         \renewcommand\labelitemi{--}
-      \item $W$ is a set of possible worlds,
+      \item $W$ is a finite, non-empty set of possible worlds,
       \item $R$ is a binary relation on $W$,
-        \item $V$ is a function $V: \text{Atom} \rightarrow \wp(W)$,
+        \item $V$ is a function $V: \texttt{Atom} \rightarrow \wp(W)$,
         \item $\mathcal{F}$ is a function assigning each world $w \in W$ a boolean algebra $\F_w$ on $R[w]$, and 
           \item $\Pr$ is a function assigning each world $w \in W$ a probability function \\ $\mu_w: \F_w \rightarrow [0,1]$.
     \end{itemize}
@@ -413,7 +420,7 @@ The following definitions are quite unsurprising, then.
     \begin{enumerate}[nosep]
   \setcounter{enumi}{4}
       \item $M,w \models \varphi \succeq \psi$ iff $\mu_w(\lb \varphi \rb^M) \geq \mu_w(\lb \psi \rb^M) $,
-      \item $M,w \models \triangle \varphi$ iff $M,w \models \varphi \succ^{M,w} \neg \varphi$ iff $ \mu_w(\lb \varphi \rb^M) > .5$, and
+      \item $M,w \models \triangle \varphi$ iff $M,w \models \varphi \succ^{M,w} \neg \varphi$ iff $ \mu_w(\lb \varphi \rb^M) > .5$
     \end{enumerate}
 \end{definition}
 
@@ -421,7 +428,7 @@ The following definitions are quite unsurprising, then.
 
 Yalcin promotes his account as satisfying all criteria (V1-V5), (V11-V12), (I1-I3) we defined.
 Let's look at some of them. 
-To compare, the probability semantics validate V2: Suppose $M,w \models
+The probability semantics validate V2: Suppose $M,w \models
 \triangle(\varphi \land \psi)$. Then $\mu_w(\lb \varphi \land \psi\rb^M) > .5$.
 Since marginal probabilities are bounded from below by joint probabilities of
 the same variable, we have $\mu_w(\lb \varphi \rb^M) > .5$ and hence $M,w
@@ -434,7 +441,7 @@ The semantics satisfy (I1) by invalidating the pattern.
 \end{center}
 
 \noindent To see this, fix a model $M$ and a world $w \in W$ (sub- and superscripts suppressed).
-Let $\mu(\lb\varphi\rb) = .6;~ \lb\psi\rb \cap \lb\chi\rb=\emptyset;~ \mu(\lb\psi\rb) = \mu(\lb\chi\rb) = .4$. (that such a model exists can be easily verified).
+Let $\mu(\lb\varphi\rb) = .6;~ \lb\psi\rb \cap \lb\chi\rb=\emptyset;~ \mu(\lb\psi\rb) = \mu(\lb\chi\rb) = .4$ (that such a model exists can be easily verified).
 Then $\mu(\lb \psi \rb \cup \lb \chi \rb) = .8$.
 Thus $M,w \models \varphi \succeq \psi$ and $ M,w \models \varphi \succeq \chi$ but $M,w \not\models \varphi \succeq (\psi \lor \chi)$.
 
@@ -442,16 +449,16 @@ Given our criteria, then, the probabilistic model is the clear winner.
 Does this
 mean preferential accounts in general are inapt to model the
 \emph{probable}-talk semantics?
-Not quite, as we will see in the next section.
+No, as we will see in the next section.
 
 \section{Holliday and Icard's Preferential Semantics}
 
 \textcite{holliday13_measur} are not yet ready to accept defeat for the preferentialist. First, they set out to generalize Yalcin's account and replace probability functions with so called qualitatively additive measures \parencite[][p.~522]{holliday13_measur}, which they show to also be adequate with respect to our criteria.\footnote{It is noteworthy that they describe (I2) as `If $\varphi \succeq \neg \varphi$ then $\varphi \succeq \psi$', instead of the present version (see above), since the resulting claims are different. It could be worthwile to investigate further where this discrepancy is coming from.}
-They also briefly consider an ordering directly on the set of propositions instead of inducing the order from an order on worlds, and state that here, one can quite straightforwardly constrain the ordering such that it provides a semantic to satisfy the adequacy criteria \parencite[p.~924]{holliday13_measur}.
+They also briefly consider an ordering directly on the set of propositions instead of inducing the order from an order on worlds, and state that here, one can quite straightforwardly constrain the ordering such that it provides semantics which satisfy the adequacy criteria \parencite[p.~924]{holliday13_measur}.
 They dismiss it, however, because it is more desirable to not have a primitive order on propositions.
-It seems they are themselves doubting this point and merely reiterate an established point.\footnote{This, too, seems worth investigating further.}
+It seems they are themselves doubting this claim and merely reiterate an established point.\footnote{This, too, seems worth investigating further.}
 
-Finally, they propose an amendment to Kratzer's preferential semantics, intended to resolve the issues noted by Yalcin and Lassiter. With a seemingly small change on how the ordering is lifted from worlds to propositions, they manage to achieve a host of desired effects. For example, while Kratzer's lifting creates a total ordering on propositions if the order on worlds is total, not so for Holliday and Icard's lifting (cf. \parencite[][p.~525]{holliday13_measur} for a nice extended argument for why this is desirable). We describe the precise change in the next section, and have a look at the results concerning our criteria after that.
+Finally, they propose an amendment to Kratzer's preferential semantics, intended to resolve the issues noted by Yalcin and Lassiter. With a seemingly small change on how the ordering is lifted from worlds to propositions, they manage to achieve a host of desired effects. For example, while Kratzer's lifting creates a total ordering on propositions if the order on worlds is total, not so for Holliday and Icard's lifting (cf. \textcite[][p.~525]{holliday13_measur} for a nice extended argument for why this is desirable). We describe the precise change in the next section, and have a look at the results concerning our criteria after that.
 
 \subsection{Formal Setup}
 \begin{definition}
@@ -459,37 +466,37 @@ Finally, they propose an amendment to Kratzer's preferential semantics, intended
       W,R,V,\succeq\rangle}$ such that
     \begin{itemize}[nosep]
         \renewcommand\labelitemi{--}
-      \item $W$ is a set of possible worlds,
+      \item $W$ is a finite, non-empty set of possible worlds,
       \item $R$ is a binary relation on $W$,
-      \item $V$ is a function $V: \text{ Atom } \rightarrow \wp(W)$, and
+      \item $V$ is a function $V: \texttt{ Atom } \rightarrow \wp(W)$, and
       \item $\succeq$ is a function assigning each world $w \in W$ a preorder
         (reflexive and transitive binary relation) $\geq^{M,w}$ on $W$. 
     \end{itemize}
 \end{definition}
-For any proposition $P \subseteq W$, $P_w := P \cap R[w]$. Further, for two proposition $A,B \subseteq W$ we define
+For any proposition $P \subseteq W$, $P_w := P \cap R[w]$. Further, for two propositions $A,B \subseteq W$ we define
 \begin{multline}
     \label{eq:injection}A \succeq^{M,w} B :\iff \text{ there exists an injective function } f: B_w \rightarrow A_w \\ \text{ such that } f(x) \geq^{M,w} x \text{ for all } x \in B_w.
 \end{multline}
 
 \begin{definition}[Holliday and Icard preferential semantics] Let $M = {\langle
-      W,R,V,\succeq \rangle}$, $w \in W, \varphi,\psi \in \L$ and let $\succeq^{M,w}$ be the order on $W$ defined by Equation \ref{eq:injection}. We the define clauses 1-6 just like in Kratzer preferential semantics (Definition \ref{def:kratsem}).
+      W,R,V,\succeq \rangle}$, $w \in W, \varphi,\psi \in \L$ and let $\succeq^{M,w}$ be the order on $W$ defined by Equation \ref{eq:injection}. We define clauses 1-6 just like in Kratzer preferential semantics (Definition \ref{def:kratsem}).
 \end{definition}
 
 Holliday and Icard's semantics is very similar to Kratzer's.
-In particular, we can associate the modal base and ordering source of Kratzer's with the binary relation $R$ and the $\geq$-function.
+In particular, we can associate the modal base and ordering source of Kratzer's with the binary relation $R$ and the $\succeq$-function.
 Just as the modal base determines for each world a set of epistemically accessible worlds, so does $R[w]$.
-And just as the ordering source induces an order on propositions, so does $\geq$.
-For our present purposes, both formulations are equivalent even.
-Holliday and Icard make a crucial change to how the order is induced, however.
-To see this, note that Equation \ref{eq:lifted} can be rewritten as an equivalent definition:
+And just as the ordering source induces an order on propositions, so does $\succeq$.
+For our present purposes, both formulations are equivalent.
+However, Holliday and Icard make a crucial change to how the order is induced.
+To see this, note that Equation \ref{eq:lifted} can be rewritten equivalently:
 
-For a modal base $f$ and a ordering source $g$, for propositions $A,B$ and world $w$, define
+For a modal base $f$ and a ordering source $g$, for propositions $A,B$ and a world $w$, define
 \begin{multline}
     \tag{2*}
     \label{eq:lifted-star}
     A \succeq_w B :\iff \text{ there exists a function } f: B_w \rightarrow A_w \\ \text{ such that } f(x) \leq_{g(w)} x \text{ for all } x \in B_w.
 \end{multline}
-Compared to Equation \ref{eq:injection}, besides the inverted direction of $\geq$ which is just due to how the notions were defined, the difference is that Holliday and Icard require an injective function assigning each element of $B$ a unique element of $A$ such that the element of $A$ is more plausible, normal etc.
+Compared to Equation \ref{eq:injection}, besides the inverted direction of $\geq$ which is just due to how the notions were defined, the difference is that Holliday and Icard require an \emph{injective} function assigning each element of $B$ a unique element of $A$.
 This simple change has interesting consequences, as we will see in the next section. 
 \subsection{Discussion}
 
@@ -501,10 +508,21 @@ We will spare the reader such repetitious reading.
 
 We can instead employ the model Holliday and Icard provide to construct a countermodel to (I1). Recall that Kratzer's account validated this pattern. We adopt slightly sloppy notation to improve readability.  
 
-Fix a model $M$ and a world $w$. Let $W = \{abcd\}$, ordered by $M$ like so: $a > b > c > d$. Let $A = \{ab\}, B = \{bc\}, C = \{cd\}$. It's easy to see that by (\ref{eq:injection}), we have $A \succ B \succ C$. However, we do not have $A \succ (B \cup C)$, since we can't construct an injection like required. Hence, (I1) is not validated. A clear improvement over Kratzer's semantics.
+Fix a model $M$ and a world $w$. Let $W = \{abcd\}$, ordered by $M$ like so: $a
+> b > c > d$. Let $A = \{ab\}, B = \{bc\}, C = \{cd\}$. It's easy to see that by
+(\ref{eq:injection}), we have $A \succ B \succ C$. However, we do not have $A
+\succ (B \cup C)$, since we can't construct an injection like required. Hence,
+(I1) is not validated. And neither are (I2) and (I3). A clear improvement over
+Kratzer's semantics.
+
+This concludes our discussion. Next, we'll briefly review what we have achieved
+so far and give an outlook on the direction for future studies.
 
 \section{Conclusion}
-\begin{figure}
+In this paper, we compared different accounts for semantics of \emph{probable}-talk. The criteria we established were not all satisfied by Kratzer's or Hamblin's account. Since Yalcin's (and also Lassiter's) probability semantics satisfy all criteria, it looked like the debate between preferential and probabilistic or qualitative and quantitative semantics had been settled. But Holliday and Icard improved on Kratzer's account such that it, too, satisfied the criteria. Thus at least from this vantage point, both types of semantics are able to make valuable contributions to explaining what we mean by \emph{probable}.
+A summarizing overview is provided in Figure \ref{fig:table}.
+
+\begin{figure}[ht]
 \begin{center}
 \begin{tabular}{lcccc}
  & Kratzer & Hamblin & Yalcin & Holliday \& Icard\\
@@ -527,25 +545,18 @@ I3 & \(\checkmark\) & \texttimes{} & \(\checkmark\) & \(\checkmark\)\\
   (I1-I3), `$\checkmark$' represents the account \emph{invalidating} that pattern.}
 \label{fig:table}
 \end{figure}
-In this paper, we compared different accounts for semantics of
-\emph{probable}-talk. The criteria we established were not satisfied by
-Kratzer's or Hamblin's account. Since Yalcin's (and also Lassiter's) probability
-semantics satisfy all criteria, it looked like the debate between preferential
-and probabilistic or qualitative and quantitative semantics had been settled
-with regards to the criteria. But Holliday and Icard improved on Kratzer's
-account such that it, too, satisfied the criteria. Thus at least from this
-vantage point, both types of semantics are able to make valuable contributions
-to explaining what we mean by \emph{probable}. An summarizing overview is
-provided in Figure \ref{fig:table}. 
 
-Of course, this paper only scratches the surface of this topic. First, we
-severely limited the choice of criteria. Much more can be said as to how
-\emph{probable}-talk interfaces with other modals like \emph{might} or
-\emph{must}, or with indicative conditionals. We did not address the related
-discussion of graded modals and semantics on a scale like in Kennedy 2007 (look
-up reference in Lassiter). What's more, there is a host of interesting further
-work by \textcite{holliday13_measur} and \textcite{harrison-trainor17_prefer} ...
-\todo{Finish this section}
+Of course, this paper only scratches the surface of this topic. First, we severely limited the choice of criteria. Much more can be said as to how \emph{probable}-talk interfaces with other modals like \emph{might} or \emph{must}, or with indicative conditionals.
+We did not address the related discussion of graded modals and semantics on a scale like in Kennedy 2007 (look up reference in Lassiter).
+Additionally, nested modal formulae of the form ($\varphi \succeq (\psi \succeq \chi)$) are allowed by the syntax but have not been evaluated in this paper.
+We have only looked at finite $W$. There certainly are important additional issues to consider when $W$ can have any cardinality.
+
+There is very interesting further work by \textcite{holliday13_measur} and \textcite{harrison-trainor17_prefer} concerned with developing logics for the different semantics.
+In particular, they present a type of preferential semantics very similar to the one presented here
+and a probability semantics also very similar to the one presented here generalized to imprecise probabilities.
+They then show that both are sound and complete with respect to the same set of axioms.
+Their result hints at deep structural similarities.
+It should prove very interesting to work out connections to the \emph{probable}-talk semantics.
 
  \printbibliography
 \end{document}
